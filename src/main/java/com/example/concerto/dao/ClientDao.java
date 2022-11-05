@@ -1,7 +1,6 @@
 package com.example.concerto.dao;
 
-import com.example.concerto.pojo.Paper;
-import com.example.concerto.pojo.User;
+import com.example.concerto.pojo.Client;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,9 +11,9 @@ import java.util.List;
  * @date 2021/4/20 下午8:58
  */
 @Mapper
-public interface PaperDao {
+public interface ClientDao {
     //模糊查询 用like对标题和概述进行查询
-    public List<Paper> queryByKeyword(String keyword);
+    public List<Client> queryByNickName(String keyword);
 
 }
 

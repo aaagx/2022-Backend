@@ -1,7 +1,7 @@
 package com.example.concerto.dao;
 
 
-import com.example.concerto.pojo.Paper;
+import com.example.concerto.pojo.Client;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,12 @@ import java.util.List;
 @EnableAutoConfiguration
 public class DaoTest {
     @Autowired
-    PaperDao dao;
+    ClientDao clientDao;
 
     @Test
     public void test(){
-        List<Paper> papers = dao.queryByKeyword("hello");
+        List<Client> Clients = clientDao.queryByNickName("aaagx");
+        System.out.println(Clients.get(0).getTel());
         System.out.println("fine");
     }
 
