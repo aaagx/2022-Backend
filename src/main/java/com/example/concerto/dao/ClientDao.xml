@@ -6,7 +6,7 @@
 <mapper namespace="com.example.concerto.dao.ClientDao">
 
     <select id="queryByNickName" resultType="Client">
-        select * from client where nickname like CONCAT('%',#{keyword},'%')
+        select * from db.client where nickname like CONCAT('%',#{keyword},'%')
     </select>
 
 </mapper>

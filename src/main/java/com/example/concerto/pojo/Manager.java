@@ -1,7 +1,7 @@
 package com.example.concerto.pojo;
 
 public class Manager {
-    String uuid;
+    Integer id;
     String account;
     Integer manager_no;
     String name;
@@ -9,8 +9,8 @@ public class Manager {
     String password;
     String salt;
 
-    public Manager(String uuid, String account, Integer manager_no, String name, String tel, String password, String salt) {
-        this.uuid = uuid;
+    public Manager(Integer id, String account, Integer manager_no, String name, String tel, String password, String salt) {
+        this.id = id;
         this.account = account;
         this.manager_no = manager_no;
         this.name = name;
@@ -19,12 +19,12 @@ public class Manager {
         this.salt = salt;
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getAccount() {
