@@ -9,4 +9,53 @@
         select * from db.client where nickname like CONCAT('%',#{keyword},'%')
     </select>
 
+    <insert id="insertClientInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Client">
+        insert into db.client
+        values(#{id},#{tel},#{nickName},#{realName},#{idCardNo},#{password},#{salt})
+    </insert>
+
+    <delete id="deleteClientInfoById" parameterType="int">
+        delete from db.client
+        where id = #{id}
+    </delete>
+
+    <update id="updateClientInfo" parameterType="Client">
+        update db.client
+        <set>
+            <if test="nickName != null and nickName != ''">nickname=#{nickName},</if>
+            <if test="password != null and password !=''">password=#{password},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getClientInfoById" parameterType="int" resultType="Client">
+        select *
+        from db.client
+        where id = #{id}
+    </select>
+
+    <select id="getClientList" resultType="Client">
+        select * from db.client
+    </select>
+
+    <select id="getClientList" resultType="Client">
+        select *
+        from db.client
+        <where>
+            <if test="id != null and id != ''">And id=#{id}</if>
+            <if test="tel != null and tel != ''">
+                AND tel LIKE "%"#{tel}"%"
+            </if>
+            <if test="nickName != null and nickName != ''">
+                AND nickname LIKE "%"#{nickName}"%"
+            </if>
+            <if test="realName != null and realName != ''">
+                AND real_name LIKE "%"#{realName}"%"
+            </if>
+            <if test="idCardNo != null and idCardNo != ''">
+                AND id_card_no LIKE "%"#{idCardNo}"%"
+            </if>
+        </where>
+    </select>
+
 </mapper>

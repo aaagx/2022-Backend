@@ -17,4 +17,37 @@ public class ClientServiceImpl implements ClilentService{
         List<Client> result= clientDao.queryByNickName("aaagx");
         return result;
     }
+
+    @Override
+    public void insertClientInfo(Client client) {
+        clientDao.insertClientInfo(client);
+    }
+
+    @Override
+    public void deleteClientInfoById(int id) {
+        clientDao.deleteClientInfoById(id);
+    }
+
+    @Override
+    public void updateClientInfo(Client client) {
+        clientDao.updateClientInfo(client);
+    }
+
+    @Override
+    public Client getClientInfoById(int id) {
+        Client client = clientDao.getClientInfoById(id);
+        return client;
+    }
+
+    @Override
+    public List<Client> getClientList() {
+        List<Client> clientList = clientDao.getClientList();
+        return clientList;
+    }
+
+    @Override
+    public List<Client> getClientListByPojo(Client client) {
+        List<Client> clientList = clientDao.getClientListByPojo(client);
+        return clientList;
+    }
 }
