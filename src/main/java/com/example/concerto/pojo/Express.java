@@ -1,7 +1,7 @@
 package com.example.concerto.pojo;
 
 public class Express {
-    String uuid;
+    Integer id;
     Integer express_no;
     String express_company;
     String product_link;
@@ -12,8 +12,8 @@ public class Express {
     String sender_address;
     String recipient_address;
 
-    public Express(String uuid, Integer express_no, String express_company, String product_link, String sender_tel, String recipient_tel, String sender_name, String recipient_name, String sender_address, String recipient_address) {
-        this.uuid = uuid;
+    public Express(Integer id, Integer express_no, String express_company, String product_link, String sender_tel, String recipient_tel, String sender_name, String recipient_name, String sender_address, String recipient_address) {
+        this.id = id;
         this.express_no = express_no;
         this.express_company = express_company;
         this.product_link = product_link;
@@ -25,12 +25,12 @@ public class Express {
         this.recipient_address = recipient_address;
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getExpress_no() {

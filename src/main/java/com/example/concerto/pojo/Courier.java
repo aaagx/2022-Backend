@@ -1,17 +1,17 @@
 package com.example.concerto.pojo;
 
 public class Courier {
-    String uuid;
+    Integer id;
     Integer courier_no;
     String real_name;
     String tel;
     String id_card_no;
-    String employ_unit;
+    Integer employ_unit;
     String password;
     String salt;
 
-    public Courier(String uuid, Integer courier_no, String real_name, String tel, String id_card_no, String employ_unit, String password, String salt) {
-        this.uuid = uuid;
+    public Courier(Integer id, Integer courier_no, String real_name, String tel, String id_card_no, Integer employ_unit, String password, String salt) {
+        this.id = id;
         this.courier_no = courier_no;
         this.real_name = real_name;
         this.tel = tel;
@@ -21,12 +21,12 @@ public class Courier {
         this.salt = salt;
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getCourier_no() {
@@ -61,11 +61,11 @@ public class Courier {
         this.id_card_no = id_card_no;
     }
 
-    public String getEmploy_unit() {
+    public Integer getEmploy_unit() {
         return employ_unit;
     }
 
-    public void setEmploy_unit(String employ_unit) {
+    public void setEmploy_unit(Integer employ_unit) {
         this.employ_unit = employ_unit;
     }
 

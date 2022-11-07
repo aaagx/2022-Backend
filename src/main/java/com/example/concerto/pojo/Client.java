@@ -1,24 +1,16 @@
 package com.example.concerto.pojo;
 
 public class Client {
-    String uuid;
+    Integer id;
     String tel;
     String nickName;
     String realName;
     String idCardNo;
     String password;
-    Integer salt;
+    String salt;
 
-    public Client(String tel, String nickName, String realName, String idCardNo, String password) {
-        this.tel = tel;
-        this.nickName = nickName;
-        this.realName = realName;
-        this.idCardNo = idCardNo;
-        this.password = password;
-    }
-
-    public Client(String uuid, String tel, String nickName, String realName, String idCardNo, String password, Integer salt) {
-        this.uuid = uuid;
+    public Client(Integer id, String tel, String nickName, String realName, String idCardNo, String password, String salt) {
+        this.id = id;
         this.tel = tel;
         this.nickName = nickName;
         this.realName = realName;
@@ -27,12 +19,12 @@ public class Client {
         this.salt = salt;
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTel() {
@@ -75,11 +67,11 @@ public class Client {
         this.password = password;
     }
 
-    public Integer getSalt() {
+    public String getSalt() {
         return salt;
     }
 
-    public void setSalt(Integer salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
     }
 }

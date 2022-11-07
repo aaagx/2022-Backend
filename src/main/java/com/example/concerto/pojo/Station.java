@@ -1,24 +1,24 @@
 package com.example.concerto.pojo;
 
 public class Station {
-    String uuid;
+    Integer id;
     Integer station_no;
     String address;
     String name;
 
-    public Station(String uuid, Integer station_no, String address, String name) {
-        this.uuid = uuid;
+    public Station(Integer id, Integer station_no, String address, String name) {
+        this.id = id;
         this.station_no = station_no;
         this.address = address;
         this.name = name;
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getStation_no() {

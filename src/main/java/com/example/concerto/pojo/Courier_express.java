@@ -1,22 +1,22 @@
 package com.example.concerto.pojo;
 
 public class Courier_express {
-    String uuid;
+    Integer id;
     Integer courier_no;
     Integer express_no;
 
-    public Courier_express(String uuid, Integer courier_no, Integer express_no) {
-        this.uuid = uuid;
+    public Courier_express(Integer id, Integer courier_no, Integer express_no) {
+        this.id = id;
         this.courier_no = courier_no;
         this.express_no = express_no;
     }
 
-    public String getUuid() {
-        return uuid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getCourier_no() {
