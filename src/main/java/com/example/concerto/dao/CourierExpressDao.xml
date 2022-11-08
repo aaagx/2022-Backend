@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.concerto.dao.CourierExpressDao">
+
+    <insert id="insertCourierExpressInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Courier_express">
+        insert into db.courier_express
+        values (#{id},#{courier_no},#{express_no})
+    </insert>
+
+    <delete id="deleteCourierExpressInfo" parameterType="Courier_express">
+        delete
+        from db.courier_express
+        <where>
+            <if test="id != null and id != ''">AND id=#{id}</if>
+            <if test="courier_no != null and courier_no != ''">AND courier_no=#{courier_no}</if>
+            <if test="express_no != null and express_no != ''">AND express_no=#{express_no}</if>
+        </where>
+    </delete>
+
+    <update id="updateCourierExpressInfo" parameterType="Courier_express">
+        update db.courier_express
+        <set>
+            <if test="courier_no != null and courier_no != ''">courier_no=#{courier_no},</if>
+            <if test="express_no != null and express_no !=''">express_no=#{express_no},</if>
+        </set>
+        where id = #{id};
+
+    </update>
+
+    <select id="getCourierExpressInfoByExpressNo" parameterType="int" resultType="Courier_express">
+        select *
+        from db.courier_express
+        where express_no = #{express_no};
+    </select>
+
+    <select id="getCourierExpressInfoByCourierNo" parameterType="int" resultType="Courier_express">
+        select *
+        from db.courier_express
+        where courier_no = #{courier_no};
+    </select>
+</mapper>
