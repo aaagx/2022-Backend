@@ -6,17 +6,15 @@ public class Courier {
     String real_name;
     String tel;
     String id_card_no;
-    Integer employ_unit;
     String password;
     String salt;
 
-    public Courier(Integer id, Integer courier_no, String real_name, String tel, String id_card_no, Integer employ_unit, String password, String salt) {
+    public Courier(Integer id, Integer courier_no, String real_name, String tel, String id_card_no, String password, String salt) {
         this.id = id;
         this.courier_no = courier_no;
         this.real_name = real_name;
         this.tel = tel;
         this.id_card_no = id_card_no;
-        this.employ_unit = employ_unit;
         this.password = password;
         this.salt = salt;
     }
@@ -59,14 +57,6 @@ public class Courier {
 
     public void setId_card_no(String id_card_no) {
         this.id_card_no = id_card_no;
-    }
-
-    public Integer getEmploy_unit() {
-        return employ_unit;
-    }
-
-    public void setEmploy_unit(Integer employ_unit) {
-        this.employ_unit = employ_unit;
     }
 
     public String getPassword() {
