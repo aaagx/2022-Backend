@@ -11,8 +11,9 @@ public class Express {
     String recipient_name;
     String sender_address;
     String recipient_address;
+    Integer status;
 
-    public Express(Integer id, Integer express_no, String express_company, String product_link, String sender_tel, String recipient_tel, String sender_name, String recipient_name, String sender_address, String recipient_address) {
+    public Express(Integer id, Integer express_no, String express_company, String product_link, String sender_tel, String recipient_tel, String sender_name, String recipient_name, String sender_address, String recipient_address, Integer status) {
         this.id = id;
         this.express_no = express_no;
         this.express_company = express_company;
@@ -23,6 +24,7 @@ public class Express {
         this.recipient_name = recipient_name;
         this.sender_address = sender_address;
         this.recipient_address = recipient_address;
+        this.status = status;
     }
 
     public Integer getId() {
@@ -103,5 +105,13 @@ public class Express {
 
     public void setRecipient_address(String recipient_address) {
         this.recipient_address = recipient_address;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }
