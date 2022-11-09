@@ -5,36 +5,36 @@
 
 <mapper namespace="com.example.concerto.dao.ClientExpressDao">
 
-    <insert id="insertClientExpressInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Client_express">
-        insert into db.client_express
-        values (#{id},#{tel},#{express_no})
+    <insert id="insertClientExpressInfo" useGeneratedKeys="true" keyProperty="id" parameterType="ClientExpress">
+        insert into db.clientExpress
+        values (#{id},#{tel},#{expressNo})
     </insert>
 
-    <delete id="deleteClientExpressInfo" parameterType="Client_express">
-        delete from db.client_express
+    <delete id="deleteClientExpressInfo" parameterType="ClientExpress">
+        delete from db.clientExpress
         <where>
             <if test="id != null and id != ''">AND id=#{id}</if>
             <if test="tel != null and tel != ''">AND tel=#{tel}</if>
-            <if test="express_no != null and express_no != ''">AND express_no=#{express_no}</if>
+            <if test="expressNo != null and expressNo != ''">AND expressNo=#{expressNo}</if>
         </where>
     </delete>
 
-    <update id="updateClientExpressInfo" parameterType="Client_express">
-        update db.client_express
+    <update id="updateClientExpressInfo" parameterType="ClientExpress">
+        update db.clientExpress
         <set>
             <if test="tel != null and tel != ''">tel=#{tel},</if>
-            <if test="express_no != null and express_no !=''">express_no=#{express_no},</if>
+            <if test="expressNo != null and expressNo !=''">expressNo=#{expressNo},</if>
         </set>
         where id = #{id}
     </update>
 
-    <select id="getClientExpressInfoByExpressNo" parameterType="int" resultType="Client_express">
-        select * from db.client_express
-        where express_no = #{express_no}
+    <select id="getClientExpressInfoByExpressNo" parameterType="int" resultType="ClientExpress">
+        select * from db.clientExpress
+        where expressNo = #{expressNo}
     </select>
 
-    <select id="getClientExpressInfoListByClientTel" parameterType="String" resultType="Client_express">
-        select * from db.client_express
+    <select id="getClientExpressInfoListByClientTel" parameterType="String" resultType="ClientExpress">
+        select * from db.clientExpress
         where tel = #{tel}
     </select>
 
