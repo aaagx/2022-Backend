@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.concerto.dao.StationExpressDao">
+    <insert id="insertStationExpress" useGeneratedKeys="true" keyProperty="id" parameterType="Station_express">
+        insert into db.station_express
+        values (#{id}, #{station_no}, #{express_no})
+    </insert>
+
+    <delete id="deleteStationExpressByStationExpress" parameterType="Station_express">
+        delete from db.station_express
+        <where>
+            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
+            <if test="express_no != null and express_no != ''">And express_no=#{express_no}</if>
+        </where>
+    </delete>
+
+    <update id="updateStationExpressByStationExpress" parameterType="Station_express">
+        update db.station_express
+        set station_no=#{station_no}
+        where express_no = #{express_no}
+    </update>
+
+    <select id="getStationExpressList" resultType="Station_express">
+        select *
+        from db.station_express
+        <where>
+            <if test="id != null and id != ''">And id=#{id}</if>
+            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
+            <if test="express_no != null and express_no != ''">And express_no=#{express_no}</if>
+        </where>
+    </select>
+
+</mapper>

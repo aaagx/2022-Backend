@@ -2,29 +2,32 @@ package com.example.concerto.pojo;
 
 public class Express {
     Integer id;
-    Integer express_no;
-    String express_company;
-    String product_link;
-    String sender_tel;
-    String recipient_tel;
-    String sender_name;
-    String recipient_name;
-    String sender_address;
-    String recipient_address;
+    Integer expressNo;
+    String expressCompany;
+    String productLink;
+    String senderTel;
+    String recipientTel;
+    String senderName;
+    String recipientName;
+    String senderAddress;
+    String recipientAddress;
     Integer status;
 
-    public Express(Integer id, Integer express_no, String express_company, String product_link, String sender_tel, String recipient_tel, String sender_name, String recipient_name, String sender_address, String recipient_address, Integer status) {
+    public Express(Integer id, Integer expressNo, String expressCompany, String productLink, String senderTel, String recipientTel, String senderName, String recipientName, String senderAddress, String recipientAddress, Integer status) {
         this.id = id;
-        this.express_no = express_no;
-        this.express_company = express_company;
-        this.product_link = product_link;
-        this.sender_tel = sender_tel;
-        this.recipient_tel = recipient_tel;
-        this.sender_name = sender_name;
-        this.recipient_name = recipient_name;
-        this.sender_address = sender_address;
-        this.recipient_address = recipient_address;
+        this.expressNo = expressNo;
+        this.expressCompany = expressCompany;
+        this.productLink = productLink;
+        this.senderTel = senderTel;
+        this.recipientTel = recipientTel;
+        this.senderName = senderName;
+        this.recipientName = recipientName;
+        this.senderAddress = senderAddress;
+        this.recipientAddress = recipientAddress;
         this.status = status;
+    }
+
+    public Express() {
     }
 
     public Integer getId() {
@@ -35,76 +38,76 @@ public class Express {
         this.id = id;
     }
 
-    public Integer getExpress_no() {
-        return express_no;
+    public Integer getExpressNo() {
+        return expressNo;
     }
 
-    public void setExpress_no(Integer express_no) {
-        this.express_no = express_no;
+    public void setExpressNo(Integer expressNo) {
+        this.expressNo = expressNo;
     }
 
-    public String getExpress_company() {
-        return express_company;
+    public String getExpressCompany() {
+        return expressCompany;
     }
 
-    public void setExpress_company(String express_company) {
-        this.express_company = express_company;
+    public void setExpressCompany(String expressCompany) {
+        this.expressCompany = expressCompany;
     }
 
-    public String getProduct_link() {
-        return product_link;
+    public String getProductLink() {
+        return productLink;
     }
 
-    public void setProduct_link(String product_link) {
-        this.product_link = product_link;
+    public void setProductLink(String productLink) {
+        this.productLink = productLink;
     }
 
-    public String getSender_tel() {
-        return sender_tel;
+    public String getSenderTel() {
+        return senderTel;
     }
 
-    public void setSender_tel(String sender_tel) {
-        this.sender_tel = sender_tel;
+    public void setSenderTel(String senderTel) {
+        this.senderTel = senderTel;
     }
 
-    public String getRecipient_tel() {
-        return recipient_tel;
+    public String getRecipientTel() {
+        return recipientTel;
     }
 
-    public void setRecipient_tel(String recipient_tel) {
-        this.recipient_tel = recipient_tel;
+    public void setRecipientTel(String recipientTel) {
+        this.recipientTel = recipientTel;
     }
 
-    public String getSender_name() {
-        return sender_name;
+    public String getSenderName() {
+        return senderName;
     }
 
-    public void setSender_name(String sender_name) {
-        this.sender_name = sender_name;
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
     }
 
-    public String getRecipient_name() {
-        return recipient_name;
+    public String getRecipientName() {
+        return recipientName;
     }
 
-    public void setRecipient_name(String recipient_name) {
-        this.recipient_name = recipient_name;
+    public void setRecipientName(String recipientName) {
+        this.recipientName = recipientName;
     }
 
-    public String getSender_address() {
-        return sender_address;
+    public String getSenderAddress() {
+        return senderAddress;
     }
 
-    public void setSender_address(String sender_address) {
-        this.sender_address = sender_address;
+    public void setSenderAddress(String senderAddress) {
+        this.senderAddress = senderAddress;
     }
 
-    public String getRecipient_address() {
-        return recipient_address;
+    public String getRecipientAddress() {
+        return recipientAddress;
     }
 
-    public void setRecipient_address(String recipient_address) {
-        this.recipient_address = recipient_address;
+    public void setRecipientAddress(String recipientAddress) {
+        this.recipientAddress = recipientAddress;
     }
 
     public Integer getStatus() {
@@ -113,5 +116,22 @@ public class Express {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Express{" +
+                "id=" + id +
+                ", expressNo=" + expressNo +
+                ", expressCompany='" + expressCompany + '\'' +
+                ", productLink='" + productLink + '\'' +
+                ", senderTel='" + senderTel + '\'' +
+                ", recipientTel='" + recipientTel + '\'' +
+                ", senderName='" + senderName + '\'' +
+                ", recipientName='" + recipientName + '\'' +
+                ", senderAddress='" + senderAddress + '\'' +
+                ", recipientAddress='" + recipientAddress + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

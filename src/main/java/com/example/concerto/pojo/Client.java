@@ -9,6 +9,9 @@ public class Client {
     String password;
     String salt;
 
+    public Client() {
+    }
+
     public Client(Integer id, String tel, String nickName, String realName, String idCardNo, String password, String salt) {
         this.id = id;
         this.tel = tel;
@@ -73,5 +76,18 @@ public class Client {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", tel='" + tel + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", realName='" + realName + '\'' +
+                ", idCardNo='" + idCardNo + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
     }
 }

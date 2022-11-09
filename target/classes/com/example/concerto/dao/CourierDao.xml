@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.concerto.dao.CourierDao">
+
+    <insert id="insertCourierInfo" parameterType="Courier" useGeneratedKeys="true" keyProperty="id">
+        insert into db.courier
+        values (#{id},#{courier_no},#{real_name},#{tel},#{id_card_no},#{password},#{salt})
+    </insert>
+
+    <delete id="deleteCourierInfoById" parameterType="int">
+        delete from db.courier
+        where id = #{id}
+    </delete>
+
+    <update id="updateCourierInfo" parameterType="Courier">
+        update db.courier
+        <set>
+            <if test="tel != null and tel != ''">tel = #{tel},</if>
+            <if test="password != null and password != ''">password = #{password},</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="getCourierInfoById" parameterType="int" resultType="Courier">
+        select * from db.courier
+        where id = #{id}
+    </select>
+
+    <select id="getCourierList" resultType="Courier">
+        select * from db.courier
+    </select>
+
+    <select id="getCourierListByPojo" parameterType="Courier" resultType="Courier">
+        select * from db.courier
+        <where>
+            <if test="id != null and id != ''">And id=#{id}</if>
+            <if test="courier_no != null and courier_no != ''">
+                AND courier_no LIKE "%"#{courier_no}"%"
+            </if>
+            <if test="real_name != null and real_name != ''">
+                AND real_name LIKE "%"#{real_name}"%"
+            </if>
+            <if test="tel != null and tel != ''">
+                AND tel LIKE "%"#{tel}"%"
+            </if>
+            <if test="id_card_no != null and id_card_no != ''">
+                AND id_card_no LIKE "%"#{id_card_no}"%"
+            </if>
+        </where>
+    </select>
+
+</mapper>

@@ -3,20 +3,23 @@ package com.example.concerto.pojo;
 public class Manager {
     Integer id;
     String account;
-    Integer manager_no;
+    Integer managerNo;
     String name;
     String tel;
     String password;
     String salt;
 
-    public Manager(Integer id, String account, Integer manager_no, String name, String tel, String password, String salt) {
+    public Manager(Integer id, String account, Integer managerNo, String name, String tel, String password, String salt) {
         this.id = id;
         this.account = account;
-        this.manager_no = manager_no;
+        this.managerNo = managerNo;
         this.name = name;
         this.tel = tel;
         this.password = password;
         this.salt = salt;
+    }
+
+    public Manager() {
     }
 
     public Integer getId() {
@@ -35,12 +38,12 @@ public class Manager {
         this.account = account;
     }
 
-    public Integer getManager_no() {
-        return manager_no;
+    public Integer getManagerNo() {
+        return managerNo;
     }
 
-    public void setManager_no(Integer manager_no) {
-        this.manager_no = manager_no;
+    public void setManagerNo(Integer managerNo) {
+        this.managerNo = managerNo;
     }
 
     public String getName() {
@@ -73,5 +76,18 @@ public class Manager {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", managerNo=" + managerNo +
+                ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
     }
 }

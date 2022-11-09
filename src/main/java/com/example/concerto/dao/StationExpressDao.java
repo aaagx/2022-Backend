@@ -1,17 +1,19 @@
 package com.example.concerto.dao;
 
-import com.example.concerto.pojo.Station_express;
+import com.example.concerto.pojo.StationExpress;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface StationExpressDao {
-    public void insertStationExpress(Station_express station_express);
+    public void insertStationExpress(StationExpress stationExpress);
 
-    public void deleteStationExpressByStationExpress(Station_express station_express);
+    public void deleteStationExpressByStationExpress(StationExpress stationExpress);
 
-    public void updateStationExpressByStationExpress(Station_express station_express);
+    public void updateStationExpressByStationExpress(StationExpress stationExpress);
 
-    public List<Station_express> getStationExpressList(Station_express station_express);
+    public List<StationExpress> getStationExpressList(StationExpress stationExpress);
 }

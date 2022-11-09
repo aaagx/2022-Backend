@@ -1,17 +1,19 @@
 package com.example.concerto.dao;
 
-import com.example.concerto.pojo.Station_manager;
+import com.example.concerto.pojo.StationManager;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface StationManagerDao {
-    public void insertStationManager(Station_manager station_manager);
+    public void insertStationManager(StationManager stationManager);
 
-    public void deleteStationManagerByStationManager(Station_manager station_manager);
+    public void deleteStationManagerByStationManager(StationManager stationManager);
 
-    public void updateStationManagerByStationManager(Station_manager station_manager);
+    public void updateStationManagerByStationManager(StationManager stationManager);
 
-    public List<Station_manager> getStationManagerList(Station_manager station_manager);
+    public List<StationManager> getStationManagerList(StationManager stationManager);
 }

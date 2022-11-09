@@ -1,21 +1,23 @@
 package com.example.concerto.dao;
 
-import com.example.concerto.pojo.Courier_express;
+import com.example.concerto.pojo.CourierExpress;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface CourierExpressDao {
 
-    public void insertCourierExpressInfo(Courier_express courier_express);
+    public void insertCourierExpressInfo(CourierExpress courier_express);
 
-    public void deleteCourierExpressInfo(Courier_express courier_express);
+    public void deleteCourierExpressInfo(CourierExpress courier_express);
 
-    public void updateCourierExpressInfo(Courier_express courier_express);
+    public void updateCourierExpressInfo(CourierExpress courier_express);
 
-    public Courier_express getCourierExpressInfoByExpressNo(Integer expressNo);
+    public CourierExpress getCourierExpressInfoByExpressNo(Integer expressNo);
 
-    public List<Courier_express> getCourierExpressInfoByCourierNo(Integer courierNo);
+    public List<CourierExpress> getCourierExpressInfoByCourierNo(Integer courierNo);
 
 }

@@ -6,16 +6,19 @@
 <mapper namespace="com.example.concerto.dao.ClientDao">
 
     <select id="queryByNickName" resultType="Client">
-        select * from db.client where nickname like CONCAT('%',#{keyword},'%')
+        select *
+        from db.client
+        where nickname like CONCAT('%', #{keyword}, '%')
     </select>
 
     <insert id="insertClientInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Client">
         insert into db.client
-        values(#{id},#{tel},#{nickName},#{realName},#{idCardNo},#{password},#{salt})
+        values (#{id}, #{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt})
     </insert>
 
     <delete id="deleteClientInfoById" parameterType="int">
-        delete from db.client
+        delete
+        from db.client
         where id = #{id}
     </delete>
 
@@ -35,10 +38,11 @@
     </select>
 
     <select id="getClientList" resultType="Client">
-        select * from db.client
+        select *
+        from db.client
     </select>
 
-    <select id="getClientList" resultType="Client">
+    <select id="getClientListByPojo" resultType="Client">
         select *
         from db.client
         <where>
@@ -50,10 +54,10 @@
                 AND nickname LIKE "%"#{nickName}"%"
             </if>
             <if test="realName != null and realName != ''">
-                AND real_name LIKE "%"#{realName}"%"
+                AND realName LIKE "%"#{realName}"%"
             </if>
             <if test="idCardNo != null and idCardNo != ''">
-                AND id_card_no LIKE "%"#{idCardNo}"%"
+                AND idCardNo LIKE "%"#{idCardNo}"%"
             </if>
         </where>
     </select>
