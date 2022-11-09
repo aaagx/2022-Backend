@@ -4,32 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.concerto.dao.StationCourierDao">
-    <insert id="insertStationCourier" useGeneratedKeys="true" keyProperty="id" parameterType="Station_courier">
-        insert into db.station_courier
-        values (#{id}, #{station_no}, #{courier_no})
+    <insert id="insertStationCourier" useGeneratedKeys="true" keyProperty="id" parameterType="StationCourier">
+        insert into db.stationCourier
+        values (#{id}, #{stationNo}, #{courierNo})
     </insert>
 
-    <delete id="deleteStationCourierByStationCourier" parameterType="Station_courier">
-        delete from db.station_courier
+    <delete id="deleteStationCourierByStationCourier" parameterType="StationCourier">
+        delete from db.stationCourier
         <where>
-            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
-            <if test="courier_no != null and courier_no != ''">And courier_no=#{courier_no}</if>
+            <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
+            <if test="courierNo != null and courierNo != ''">And courierNo=#{courierNo}</if>
         </where>
     </delete>
 
-    <update id="updateStationCourierByStationCourier" parameterType="Station_courier">
-        update db.station_courier
-        set station_no=#{station_no}
-        where courier_no = #{courier_no}
+    <update id="updateStationCourierByStationCourier" parameterType="StationCourier">
+        update db.stationCourier
+        set stationNo=#{stationNo}
+        where courierNo = #{courierNo}
     </update>
 
-    <select id="getStationCourierList" resultType="Station_courier">
+    <select id="getStationCourierList" resultType="StationCourier">
         select *
-        from db.station_courier
+        from db.stationCourier
         <where>
             <if test="id != null and id != ''">And id=#{id}</if>
-            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
-            <if test="courier_no != null and courier_no != ''">And courier_no=#{courier_no}</if>
+            <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
+            <if test="courierNo != null and courierNo != ''">And courierNo=#{courierNo}</if>
         </where>
     </select>
 

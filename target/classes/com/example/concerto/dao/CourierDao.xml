@@ -7,7 +7,7 @@
 
     <insert id="insertCourierInfo" parameterType="Courier" useGeneratedKeys="true" keyProperty="id">
         insert into db.courier
-        values (#{id},#{courier_no},#{real_name},#{tel},#{id_card_no},#{password},#{salt})
+        values (#{id},#{courierNo},#{realName},#{tel},#{idCardNo},#{password},#{salt})
     </insert>
 
     <delete id="deleteCourierInfoById" parameterType="int">
@@ -37,17 +37,17 @@
         select * from db.courier
         <where>
             <if test="id != null and id != ''">And id=#{id}</if>
-            <if test="courier_no != null and courier_no != ''">
-                AND courier_no LIKE "%"#{courier_no}"%"
+            <if test="courierNo != null and courierNo != ''">
+                AND courierNo LIKE "%"#{courierNo}"%"
             </if>
-            <if test="real_name != null and real_name != ''">
-                AND real_name LIKE "%"#{real_name}"%"
+            <if test="realName != null and realName != ''">
+                AND realName LIKE "%"#{realName}"%"
             </if>
             <if test="tel != null and tel != ''">
                 AND tel LIKE "%"#{tel}"%"
             </if>
-            <if test="id_card_no != null and id_card_no != ''">
-                AND id_card_no LIKE "%"#{id_card_no}"%"
+            <if test="idCardNo != null and idCardNo != ''">
+                AND idCardNo LIKE "%"#{idCardNo}"%"
             </if>
         </where>
     </select>

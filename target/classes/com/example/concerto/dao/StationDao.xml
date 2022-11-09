@@ -6,14 +6,14 @@
 <mapper namespace="com.example.concerto.dao.StationDao">
     <insert id="insertStation" useGeneratedKeys="true" keyProperty="id" parameterType="Station">
         insert into db.station
-        values (#{id}, #{station_no}, #{address}, #{name})
+        values (#{id}, #{stationNo}, #{address}, #{name})
     </insert>
 
     <delete id="deleteStationByStation" parameterType="Station">
         delete from db.station
         <where>
             <if test="id != null and id != ''">And id=#{id}</if>
-            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
+            <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
             <if test="address != null and address != ''">And address=#{address}</if>
             <if test="name != null and name != ''">And name=#{name}</if>
         </where>
@@ -22,13 +22,13 @@
     <update id="updateStationAddressByStation" parameterType="Station">
         update db.station
         set address=#{address}
-        where station_no = #{station_no}
+        where stationNo = #{stationNo}
     </update>
 
     <update id="updateStationNameByStation" parameterType="Station">
         update db.station
         set name=#{name}
-        where station_no = #{station_no}
+        where stationNo = #{stationNo}
     </update>
 
     <select id="getStationList" resultType="Station">
@@ -36,7 +36,7 @@
         from db.station
         <where>
             <if test="id != null and id != ''">And id=#{id}</if>
-            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
+            <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
             <if test="address != null and address != ''">And address=#{address}</if>
             <if test="name != null and name != ''">And name=#{name}</if>
         </where>
