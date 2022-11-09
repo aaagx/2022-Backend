@@ -5,40 +5,40 @@
 
 <mapper namespace="com.example.concerto.dao.CourierExpressDao">
 
-    <insert id="insertCourierExpressInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Courier_express">
-        insert into db.courier_express
-        values (#{id},#{courier_no},#{express_no})
+    <insert id="insertCourierExpressInfo" useGeneratedKeys="true" keyProperty="id" parameterType="CourierExpress">
+        insert into db.courierExpress
+        values (#{id},#{courierNo},#{expressNo})
     </insert>
 
-    <delete id="deleteCourierExpressInfo" parameterType="Courier_express">
+    <delete id="deleteCourierExpressInfo" parameterType="CourierExpress">
         delete
-        from db.courier_express
+        from db.courierExpress
         <where>
             <if test="id != null and id != ''">AND id=#{id}</if>
-            <if test="courier_no != null and courier_no != ''">AND courier_no=#{courier_no}</if>
-            <if test="express_no != null and express_no != ''">AND express_no=#{express_no}</if>
+            <if test="courierNo != null and courierNo != ''">AND courierNo=#{courierNo}</if>
+            <if test="expressNo != null and expressNo != ''">AND expressNo=#{expressNo}</if>
         </where>
     </delete>
 
-    <update id="updateCourierExpressInfo" parameterType="Courier_express">
-        update db.courier_express
+    <update id="updateCourierExpressInfo" parameterType="CourierExpress">
+        update db.courierExpress
         <set>
-            <if test="courier_no != null and courier_no != ''">courier_no=#{courier_no},</if>
-            <if test="express_no != null and express_no !=''">express_no=#{express_no},</if>
+            <if test="courierNo != null and courierNo != ''">courierNo=#{courierNo},</if>
+            <if test="expressNo != null and expressNo !=''">expressNo=#{expressNo},</if>
         </set>
         where id = #{id};
 
     </update>
 
-    <select id="getCourierExpressInfoByExpressNo" parameterType="int" resultType="Courier_express">
+    <select id="getCourierExpressInfoByExpressNo" parameterType="int" resultType="CourierExpress">
         select *
-        from db.courier_express
-        where express_no = #{express_no};
+        from db.courierExpress
+        where expressNo = #{expressNo};
     </select>
 
-    <select id="getCourierExpressInfoByCourierNo" parameterType="int" resultType="Courier_express">
+    <select id="getCourierExpressInfoByCourierNo" parameterType="int" resultType="CourierExpress">
         select *
-        from db.courier_express
-        where courier_no = #{courier_no};
+        from db.courierExpress
+        where courierNo = #{courierNo};
     </select>
 </mapper>

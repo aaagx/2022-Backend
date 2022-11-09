@@ -4,32 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.concerto.dao.StationExpressDao">
-    <insert id="insertStationExpress" useGeneratedKeys="true" keyProperty="id" parameterType="Station_express">
-        insert into db.station_express
-        values (#{id}, #{station_no}, #{express_no})
+    <insert id="insertStationExpress" useGeneratedKeys="true" keyProperty="id" parameterType="StationExpress">
+        insert into db.stationExpress
+        values (#{id}, #{stationNo}, #{expressNo})
     </insert>
 
-    <delete id="deleteStationExpressByStationExpress" parameterType="Station_express">
-        delete from db.station_express
+    <delete id="deleteStationExpressByStationExpress" parameterType="StationExpress">
+        delete from db.stationExpress
         <where>
-            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
-            <if test="express_no != null and express_no != ''">And express_no=#{express_no}</if>
+            <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
+            <if test="expressNo != null and expressNo != ''">And expressNo=#{expressNo}</if>
         </where>
     </delete>
 
-    <update id="updateStationExpressByStationExpress" parameterType="Station_express">
-        update db.station_express
-        set station_no=#{station_no}
-        where express_no = #{express_no}
+    <update id="updateStationExpressByStationExpress" parameterType="StationExpress">
+        update db.stationExpress
+        set stationNo=#{stationNo}
+        where expressNo = #{expressNo}
     </update>
 
-    <select id="getStationExpressList" resultType="Station_express">
+    <select id="getStationExpressList" resultType="StationExpress">
         select *
-        from db.station_express
+        from db.stationExpress
         <where>
             <if test="id != null and id != ''">And id=#{id}</if>
-            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
-            <if test="express_no != null and express_no != ''">And express_no=#{express_no}</if>
+            <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
+            <if test="expressNo != null and expressNo != ''">And expressNo=#{expressNo}</if>
         </where>
     </select>
 

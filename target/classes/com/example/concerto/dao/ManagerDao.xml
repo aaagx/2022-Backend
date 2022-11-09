@@ -7,7 +7,7 @@
 
     <insert id="insertManageInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Manager">
         insert into db.manager
-        values (#{id},#{account},#{manager_no},#{name},#{tel},#{password},#{salt})
+        values (#{id},#{account},#{managerNo},#{name},#{tel},#{password},#{salt})
     </insert>
 
     <delete id="deleteManageInfoById" parameterType="int">
@@ -20,7 +20,7 @@
         <where>
             <if test="id != null and id != ''">AND id=#{id},</if>
             <if test="account != null and account != ''">AND account=#{account},</if>
-            <if test="manager_no != null and manager_no != ''">AND manager_no=#{manager_no},</if>
+            <if test="managerNo != null and managerNo != ''">AND managerNo=#{managerNo},</if>
             <if test="name != null and name != ''">AND name=#{name},</if>
             <if test="tel != null and tel != ''">AND tel=#{tel},</if>
         </where>
@@ -51,8 +51,8 @@
             <if test="account != null and account != ''">
                 AND account LIKE "%"#{account}"%"
             </if>
-            <if test="manager_no != null and manager_no != ''">
-                AND manager_no LIKE "%"#{manager_no}"%"
+            <if test="managerNo != null and managerNo != ''">
+                AND managerNo LIKE "%"#{managerNo}"%"
             </if>
             <if test="name != null and name != ''">
                 AND name LIKE "%"#{name}"%"
