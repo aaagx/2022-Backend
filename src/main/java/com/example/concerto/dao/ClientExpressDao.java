@@ -1,20 +1,22 @@
 package com.example.concerto.dao;
 
-import com.example.concerto.pojo.Client_express;
+import com.example.concerto.pojo.ClientExpress;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Mapper
+@Repository
 public interface ClientExpressDao {
 
-    public void insertClientExpressInfo(Client_express client_express);
+    public void insertClientExpressInfo(ClientExpress clientExpress);
 
-    public void deleteClientExpressInfo(Client_express client_express);
+    public void deleteClientExpressInfo(ClientExpress clientExpress);
 
-    public void updateClientExpressInfo(Client_express client_express);
+    public void updateClientExpressInfo(ClientExpress clientExpress);
 
-    public Client_express getClientExpressInfoByExpressNo(Integer expressNo);
+    public ClientExpress getClientExpressInfoByExpressNo(Integer expressNo);
 
-    public List<Client_express> getClientExpressInfoListByClientTel(String tel);
+    public List<ClientExpress> getClientExpressInfoListByClientTel(String tel);
 }

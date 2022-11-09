@@ -2,21 +2,24 @@ package com.example.concerto.pojo;
 
 public class Courier {
     Integer id;
-    Integer courier_no;
-    String real_name;
+    Integer courierNo;
+    String realName;
     String tel;
-    String id_card_no;
+    String idCardNo;
     String password;
     String salt;
 
-    public Courier(Integer id, Integer courier_no, String real_name, String tel, String id_card_no, String password, String salt) {
+    public Courier(Integer id, Integer courierNo, String realName, String tel, String idCardNo, String password, String salt) {
         this.id = id;
-        this.courier_no = courier_no;
-        this.real_name = real_name;
+        this.courierNo = courierNo;
+        this.realName = realName;
         this.tel = tel;
-        this.id_card_no = id_card_no;
+        this.idCardNo = idCardNo;
         this.password = password;
         this.salt = salt;
+    }
+
+    public Courier() {
     }
 
     public Integer getId() {
@@ -27,20 +30,20 @@ public class Courier {
         this.id = id;
     }
 
-    public Integer getCourier_no() {
-        return courier_no;
+    public Integer getCourierNo() {
+        return courierNo;
     }
 
-    public void setCourier_no(Integer courier_no) {
-        this.courier_no = courier_no;
+    public void setCourierNo(Integer courierNo) {
+        this.courierNo = courierNo;
     }
 
-    public String getReal_name() {
-        return real_name;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setReal_name(String real_name) {
-        this.real_name = real_name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     public String getTel() {
@@ -51,12 +54,12 @@ public class Courier {
         this.tel = tel;
     }
 
-    public String getId_card_no() {
-        return id_card_no;
+    public String getIdCardNo() {
+        return idCardNo;
     }
 
-    public void setId_card_no(String id_card_no) {
-        this.id_card_no = id_card_no;
+    public void setIdCardNo(String idCardNo) {
+        this.idCardNo = idCardNo;
     }
 
     public String getPassword() {
@@ -73,5 +76,18 @@ public class Courier {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    @Override
+    public String toString() {
+        return "Courier{" +
+                "id=" + id +
+                ", courierNo=" + courierNo +
+                ", realName='" + realName + '\'' +
+                ", tel='" + tel + '\'' +
+                ", idCardNo='" + idCardNo + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                '}';
     }
 }

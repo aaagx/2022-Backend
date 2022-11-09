@@ -2,15 +2,18 @@ package com.example.concerto.pojo;
 
 public class Station {
     Integer id;
-    Integer station_no;
+    Integer stationNo;
     String address;
     String name;
 
-    public Station(Integer id, Integer station_no, String address, String name) {
+    public Station(Integer id, Integer stationNo, String address, String name) {
         this.id = id;
-        this.station_no = station_no;
+        this.stationNo = stationNo;
         this.address = address;
         this.name = name;
+    }
+
+    public Station() {
     }
 
     public Integer getId() {
@@ -21,12 +24,12 @@ public class Station {
         this.id = id;
     }
 
-    public Integer getStation_no() {
-        return station_no;
+    public Integer getStationNo() {
+        return stationNo;
     }
 
-    public void setStation_no(Integer station_no) {
-        this.station_no = station_no;
+    public void setStationNo(Integer stationNo) {
+        this.stationNo = stationNo;
     }
 
     public String getAddress() {
@@ -43,5 +46,15 @@ public class Station {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Station{" +
+                "id=" + id +
+                ", stationNo=" + stationNo +
+                ", address='" + address + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

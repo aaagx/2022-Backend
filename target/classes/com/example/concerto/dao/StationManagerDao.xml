@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.concerto.dao.StationManagerDao">
+    <insert id="insertStationManager" useGeneratedKeys="true" keyProperty="id" parameterType="Station_manager">
+        insert into db.station_manager
+        values (#{id}, #{station_no}, #{manager_no})
+    </insert>
+
+    <delete id="deleteStationManagerByStationManager" parameterType="Station_manager">
+        delete from db.station_manager
+        <where>
+            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
+            <if test="manager_no != null and manager_no != ''">And manager_no=#{manager_no}</if>
+        </where>
+    </delete>
+
+    <update id="updateStationManagerByStationManager" parameterType="Station_manager">
+        update db.station_manager
+        set station_no=#{station_no}
+        where manager_no = #{manager_no}
+    </update>
+
+    <select id="getStationManagerList" resultType="Station_manager">
+        select *
+        from db.station_manager
+        <where>
+            <if test="id != null and id != ''">And id=#{id}</if>
+            <if test="station_no != null and station_no != ''">And station_no=#{station_no}</if>
+            <if test="manager_no != null and manager_no != ''">And manager_no=#{manager_no}</if>
+        </where>
+    </select>
+
+</mapper>
