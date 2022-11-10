@@ -5,12 +5,12 @@
 
 <mapper namespace="com.example.concerto.dao.ClientExpressDao">
 
-    <insert id="insertClientExpressInfo" useGeneratedKeys="true" keyProperty="id" parameterType="ClientExpress">
+    <insert id="insertClientExpress" useGeneratedKeys="true" keyProperty="id" parameterType="ClientExpress">
         insert into db.clientExpress
         values (#{id},#{tel},#{expressNo})
     </insert>
 
-    <delete id="deleteClientExpressInfo" parameterType="ClientExpress">
+    <delete id="deleteClientExpress" parameterType="ClientExpress">
         delete from db.clientExpress
         <where>
             <if test="id != null and id != ''">AND id=#{id}</if>
@@ -19,7 +19,7 @@
         </where>
     </delete>
 
-    <update id="updateClientExpressInfo" parameterType="ClientExpress">
+    <update id="updateClientExpress" parameterType="ClientExpress">
         update db.clientExpress
         <set>
             <if test="tel != null and tel != ''">tel=#{tel},</if>
@@ -28,12 +28,12 @@
         where id = #{id}
     </update>
 
-    <select id="getClientExpressInfoByExpressNo" parameterType="int" resultType="ClientExpress">
+    <select id="getClientExpressListByExpressNo" parameterType="int" resultType="ClientExpress">
         select * from db.clientExpress
         where expressNo = #{expressNo}
     </select>
 
-    <select id="getClientExpressInfoListByClientTel" parameterType="String" resultType="ClientExpress">
+    <select id="getClientExpressListByClientTel" parameterType="String" resultType="ClientExpress">
         select * from db.clientExpress
         where tel = #{tel}
     </select>
