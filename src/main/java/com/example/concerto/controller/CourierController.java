@@ -1,8 +1,9 @@
 package com.example.concerto.controller;
 
 import com.example.concerto.pojo.Client;
+import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.UserToken;
-import com.example.concerto.service.ClientServiceImpl;
+import com.example.concerto.service.CourierServiceImpl;
 import com.example.concerto.utils.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -16,31 +17,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/client")
-public class ClientController {
+@RequestMapping("/courier")
+public class CourierController {
 
     @Autowired
-    ClientServiceImpl clientService;
+    CourierServiceImpl courierService;
 
     @RequestMapping("/register")
     @ResponseBody
-    public String register(String tel,String nickname,String realName,String idCardNo,String password){
-        Client client = new Client();
-        String salt = SaltUtil.getSalt(8);
-        client.setTel(tel);
-        Client ifExit = clientService.getClientInfoByTel(tel);
-        if (ifExit == null){
-            client.setNickName(nickname);
-            client.setRealName(realName);
-            client.setIdCardNo(idCardNo);
-            client.setSalt(salt);
-            Md5Hash MD5 = new Md5Hash(password,salt,1024);
-            client.setPassword(MD5.toHex());
-            clientService.register(client);
-            return "注册成功";
-        }else {
+    public String register(int courierNo,String realName,String tel,String idCardNo,String password) {
+        Courier ifExit1 = courierService.getCourierInfoByTel(tel);
+        if (ifExit1 != null){
             return "该号码已注册";
         }
+        Courier ifExit2 = courierService.getCourierInfoByCourierNo((int)courierNo);
+        if (ifExit2 != null){
+            return "该工号已注册";
+        }
+        Courier courier = new Courier();
+        String salt = SaltUtil.getSalt(8);
+        courier.setCourierNo(courierNo);
+        courier.setRealName(realName);
+        courier.setTel(tel);
+        courier.setIdCardNo(idCardNo);
+        courier.setSalt(salt);
+        Md5Hash MD5 = new Md5Hash(password,salt,1024);
+        courier.setPassword(MD5.toHex());
+        courierService.register(courier);
+        return "快递员注册成功";
     }
 
     @RequestMapping("/login")
@@ -55,16 +59,17 @@ public class ClientController {
         try {
             subject.login(token);
             //只要没有异常，则登录成功；有异常则登录失败
-            System.out.println("用户["+tel+"]登录成功*****************");
+            System.out.println("快递员["+tel+"]登录成功*****************");
             model.addAttribute("userTel", tel);
             //登录成功，跳转xxx.html
-            return "登录成功";
+            return "快递员登录成功";
         }catch (UnknownAccountException e){
-            model.addAttribute("msg","用户不存在");
-            return "用户不存在";
+            model.addAttribute("msg","快递员账号不存在");
+            return "快递员账号不存在";
         }catch (IncorrectCredentialsException e){
-            model.addAttribute("msg","密码错误");
-            return "密码错误";
+            model.addAttribute("msg","快递员密码错误");
+            return "快递员密码错误";
         }
     }
+
 }

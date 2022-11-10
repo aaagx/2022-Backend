@@ -23,7 +23,7 @@ public class TestController {
 
     @RequestMapping("/rsp")
     public CommonResponse testCommonResponse(){
-        List<Client> result=clilentService.getByKeyword("aaagx");
+        Client result=clilentService.getClientInfoByTel("13905080435");
         return new CommonResponse(200,"对了", result);
     }
 

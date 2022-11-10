@@ -5,17 +5,7 @@ import com.example.concerto.pojo.Client;
 import java.util.List;
 
 public interface ClilentService {
-    List<Client> getByKeyword(String keyword);
+    Client getClientInfoByTel(String tel);
 
-    void insertClientInfo(Client client);
-
-    void deleteClientInfoById(int id);
-
-    void updateClientInfo(Client client);
-
-    Client getClientInfoById(int id);
-
-    List<Client> getClientList();
-
-    List<Client> getClientListByPojo(Client client);
+    void register(Client client);
 }

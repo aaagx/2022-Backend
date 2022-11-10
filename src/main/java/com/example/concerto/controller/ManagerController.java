@@ -1,8 +1,7 @@
 package com.example.concerto.controller;
-
-import com.example.concerto.pojo.Client;
+import com.example.concerto.pojo.Manager;
 import com.example.concerto.pojo.UserToken;
-import com.example.concerto.service.ClientServiceImpl;
+import com.example.concerto.service.ManagerServiceImpl;
 import com.example.concerto.utils.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -16,32 +15,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/client")
-public class ClientController {
+@RequestMapping("/manager")
+public class ManagerController {
 
     @Autowired
-    ClientServiceImpl clientService;
+    ManagerServiceImpl managerService;
+
 
     @RequestMapping("/register")
     @ResponseBody
-    public String register(String tel,String nickname,String realName,String idCardNo,String password){
-        Client client = new Client();
-        String salt = SaltUtil.getSalt(8);
-        client.setTel(tel);
-        Client ifExit = clientService.getClientInfoByTel(tel);
-        if (ifExit == null){
-            client.setNickName(nickname);
-            client.setRealName(realName);
-            client.setIdCardNo(idCardNo);
-            client.setSalt(salt);
-            Md5Hash MD5 = new Md5Hash(password,salt,1024);
-            client.setPassword(MD5.toHex());
-            clientService.register(client);
-            return "注册成功";
-        }else {
+    public String register(String account,int managerNo,String name,String tel,String password){
+        Manager ifExit1 = managerService.getManagerInfoByTel(tel);
+        if (ifExit1 != null){
             return "该号码已注册";
         }
+        Manager ifExit2 = managerService.getManagerInfoByManagerNo(managerNo);
+        if (ifExit2 != null){
+            return "该工号已注册";
+        }
+        Manager manager = new Manager();
+        String salt = SaltUtil.getSalt(8);
+        manager.setAccount(account);
+        manager.setManagerNo(managerNo);
+        manager.setName(name);
+        manager.setTel(tel);
+        manager.setSalt(salt);
+        Md5Hash MD5 = new Md5Hash(password,salt,1024);
+        manager.setPassword(MD5.toHex());
+        managerService.register(manager);
+        return "管理员注册成功";
     }
+
+
+
 
     @RequestMapping("/login")
     @ResponseBody
@@ -58,13 +64,13 @@ public class ClientController {
             System.out.println("用户["+tel+"]登录成功*****************");
             model.addAttribute("userTel", tel);
             //登录成功，跳转xxx.html
-            return "登录成功";
+            return "管理员登录成功";
         }catch (UnknownAccountException e){
-            model.addAttribute("msg","用户不存在");
-            return "用户不存在";
+            model.addAttribute("msg","管理员账号不存在");
+            return "管理员账号不存在";
         }catch (IncorrectCredentialsException e){
-            model.addAttribute("msg","密码错误");
-            return "密码错误";
+            model.addAttribute("msg","管理员密码错误");
+            return "管理员密码错误";
         }
     }
 }
