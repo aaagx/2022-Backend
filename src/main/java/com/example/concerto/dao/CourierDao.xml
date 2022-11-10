@@ -38,7 +38,7 @@
         <where>
             <if test="id != null and id != ''">And id=#{id}</if>
             <if test="courierNo != null and courierNo != ''">
-                AND courierNo LIKE "%"#{courierNo}"%"
+                AND courierNo = #{courierNo}
             </if>
             <if test="realName != null and realName != ''">
                 AND realName LIKE "%"#{realName}"%"

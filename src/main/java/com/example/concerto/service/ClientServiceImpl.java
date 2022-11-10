@@ -12,42 +12,22 @@ import java.util.List;
 public class ClientServiceImpl implements ClilentService{
     @Autowired
     ClientDao clientDao;
+
     @Override
-    public List<Client> getByKeyword(String keyword) {
-        List<Client> result= clientDao.queryByNickName("aaagx");
-        return result;
+    public Client getClientInfoByTel(String tel) {
+        Client client = new Client();
+        client.setTel(tel);
+        List<Client> list = clientDao.getClientListByPojo(client);
+        if (list.size() == 0){
+            return null;
+        }
+        Client returnClient = new Client();
+        returnClient = list.get(0);
+        return returnClient;
     }
 
     @Override
-    public void insertClientInfo(Client client) {
+    public void register(Client client) {
         clientDao.insertClientInfo(client);
-    }
-
-    @Override
-    public void deleteClientInfoById(int id) {
-        clientDao.deleteClientInfoById(id);
-    }
-
-    @Override
-    public void updateClientInfo(Client client) {
-        clientDao.updateClientInfo(client);
-    }
-
-    @Override
-    public Client getClientInfoById(int id) {
-        Client client = clientDao.getClientInfoById(id);
-        return client;
-    }
-
-    @Override
-    public List<Client> getClientList() {
-        List<Client> clientList = clientDao.getClientList();
-        return clientList;
-    }
-
-    @Override
-    public List<Client> getClientListByPojo(Client client) {
-        List<Client> clientList = clientDao.getClientListByPojo(client);
-        return clientList;
     }
 }

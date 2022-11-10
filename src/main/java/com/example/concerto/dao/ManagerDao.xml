@@ -52,7 +52,7 @@
                 AND account LIKE "%"#{account}"%"
             </if>
             <if test="managerNo != null and managerNo != ''">
-                AND managerNo LIKE "%"#{managerNo}"%"
+                AND managerNo = #{managerNo}
             </if>
             <if test="name != null and name != ''">
                 AND name LIKE "%"#{name}"%"
