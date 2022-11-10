@@ -2,6 +2,7 @@ package com.example.concerto.dao;
 
 import com.example.concerto.pojo.Express;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,18 +11,23 @@ import java.util.List;
 @Repository
 public interface ExpressDao {
 
-    public void insertExpressInfo(Express express);
+    public void insertExpressByPojo(Express express);
 
-    public void deleteExpressInfo(int id);
+    public void deleteExpressById(int id);
 
-    public void deleteExpressInfoByPojo(Express express);
+    public void deleteExpressByPojo(Express express);
 
-    public void updateExpressInfo(Express express);
+    public void updateExpressByPojo(Express express);
 
-    public Express getExpressInfoById(int id);
+    public Express getExpressById(int id);
+
+    public Express getExpressByExpressNo(int expressNo);
 
     public List<Express> getExpressList();
 
     public List<Express> getExpressListByPojo(Express express);
 
+    public List<Express> getExpressListByTel(String tel);
+
+    public List<Express> getExpressListByTelAndStatus(@Param("tel") String tel, @Param("status") Integer status);
 }

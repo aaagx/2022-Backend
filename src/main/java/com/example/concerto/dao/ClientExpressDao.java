@@ -10,13 +10,13 @@ import java.util.List;
 @Repository
 public interface ClientExpressDao {
 
-    public void insertClientExpressInfo(ClientExpress clientExpress);
+    public void insertClientExpress(ClientExpress clientExpress);
 
-    public void deleteClientExpressInfo(ClientExpress clientExpress);
+    public void deleteClientExpress(ClientExpress clientExpress);
 
-    public void updateClientExpressInfo(ClientExpress clientExpress);
+    public void updateClientExpress(ClientExpress clientExpress);
 
-    public ClientExpress getClientExpressInfoByExpressNo(Integer expressNo);
+    public ClientExpress getClientExpressByExpressNo(Integer expressNo);
 
-    public List<ClientExpress> getClientExpressInfoListByClientTel(String tel);
+    public List<ClientExpress> getClientExpressListByClientTel(String tel);
 }
