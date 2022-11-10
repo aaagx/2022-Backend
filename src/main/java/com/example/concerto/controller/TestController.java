@@ -20,9 +20,11 @@ public class TestController {
 
     @Autowired
     ClilentService clilentService;
+
     @RequestMapping("/rsp")
     public CommonResponse testCommonResponse(){
         List<Client> result=clilentService.getByKeyword("aaagx");
         return new CommonResponse(200,"对了", result);
     }
+
 }
