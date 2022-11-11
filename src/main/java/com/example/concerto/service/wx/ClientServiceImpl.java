@@ -23,8 +23,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Express> queryExpressListByStatus(Client client, int status) {
-        List<Express> expressList = expressDao.getExpressListByTelAndStatus(client.getTel(), status);
+    public List<Express> queryExpressListByStatus(String tel, int status) {
+        List<Express> expressList = expressDao.getExpressListByTelAndStatus(tel, status);
         return expressList;
     }
 

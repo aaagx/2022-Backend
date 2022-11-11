@@ -133,11 +133,37 @@
           and cE.tel = #{tel}
           and e.status = #{status}
     </select>
+
+    <select id="getExpressListByCourierNoAndStatus" resultType="Express">
+        select id,
+               expessNo,
+               expressCompany,
+               expressCompany,
+               productLink,
+               senderTel,
+               recipientTel,
+               senderName,
+               recipientName,
+               senderAddress,
+               recipientAddress,
+               status
+        from db.express e,
+             db.courierExpress cE
+        where e.expressNo = cE.expressNo
+          and cE.courierNo = #{courierNo}
+          and e.status = #{status}
+    </select>
     <select id="getExpressByExpressNo" parameterType="Int" resultType="Express">
         select *
         from db.express
         where expressNo = #{expressNo}
     </select>
+
+    <update id="updateExpressStatusByExpressNo">
+        update db.express
+        set status = #{status}
+        where expressNo = #{expressNo}
+    </update>
 
 
 </mapper>

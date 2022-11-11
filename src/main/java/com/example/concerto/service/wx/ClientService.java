@@ -8,7 +8,7 @@ import java.util.List;
 public interface ClientService {
     public void insertExpress(Express express);
 
-    public List<Express> queryExpressListByStatus(Client client, int status);
+    public List<Express> queryExpressListByStatus(String tel, int status);
 
     public Express queryExpressByExpressNo(int expressNo);
 
