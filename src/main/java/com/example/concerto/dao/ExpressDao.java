@@ -30,4 +30,8 @@ public interface ExpressDao {
     public List<Express> getExpressListByTel(String tel);
 
     public List<Express> getExpressListByTelAndStatus(@Param("tel") String tel, @Param("status") Integer status);
+
+    public List<Express> getExpressListByCourierNoAndStatus(@Param("courierNo") int courierNo, @Param("status") Integer status);
+
+    public void updateExpressStatusByExpressNo(@Param("expressNo") int expressNo, @Param("status") Integer status);
 }
