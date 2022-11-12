@@ -1,7 +1,6 @@
 package com.example.concerto.pojo;
 
 public class Manager {
-    Integer id;
     String account;
     Integer managerNo;
     String name;
@@ -9,8 +8,7 @@ public class Manager {
     String password;
     String salt;
 
-    public Manager(Integer id, String account, Integer managerNo, String name, String tel, String password, String salt) {
-        this.id = id;
+    public Manager(String account, Integer managerNo, String name, String tel, String password, String salt) {
         this.account = account;
         this.managerNo = managerNo;
         this.name = name;
@@ -20,14 +18,6 @@ public class Manager {
     }
 
     public Manager() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getAccount() {
@@ -81,8 +71,7 @@ public class Manager {
     @Override
     public String toString() {
         return "Manager{" +
-                "id=" + id +
-                ", account='" + account + '\'' +
+                "account='" + account + '\'' +
                 ", managerNo=" + managerNo +
                 ", name='" + name + '\'' +
                 ", tel='" + tel + '\'' +

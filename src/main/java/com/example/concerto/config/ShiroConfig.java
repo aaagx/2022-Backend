@@ -35,6 +35,7 @@ public class ShiroConfig {
 
         Map<String,String> filter = new LinkedHashMap<String,String>();
         //授权  正常情况下未授权会跳转到未授权页面
+        filter.put("/wx/*","anon");
         filter.put("/login","anon");
         filter.put("/register","anon");
         filter.put("/*", "authc");

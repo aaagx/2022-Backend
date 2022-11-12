@@ -16,11 +16,11 @@ public interface CourierDao {
      */
     public void insertCourierInfo(Courier courier);
 
-    public void deteleCourierInfoById(int id);
+    public void deteleCourierInfoByCourierNo(int courierNo);
 
     public void updateCourierInfo(Courier courier);
 
-    public Courier getCourierInfoById(int id);
+    public Courier getCourierInfoByCourierNo(int courierNo);
 
     public List<Courier> getCourierList();
 

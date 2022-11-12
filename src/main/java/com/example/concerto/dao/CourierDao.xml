@@ -5,14 +5,14 @@
 
 <mapper namespace="com.example.concerto.dao.CourierDao">
 
-    <insert id="insertCourierInfo" parameterType="Courier" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertCourierInfo" parameterType="Courier" useGeneratedKeys="true" keyProperty="courierNo">
         insert into db.courier
-        values (#{id},#{courierNo},#{realName},#{tel},#{idCardNo},#{password},#{salt})
+        values (#{courierNo},#{realName},#{tel},#{idCardNo},#{password},#{salt})
     </insert>
 
-    <delete id="deleteCourierInfoById" parameterType="int">
+    <delete id="deleteCourierInfoByCourierNo" parameterType="int">
         delete from db.courier
-        where id = #{id}
+        where courierNo = #{courierNo}
     </delete>
 
     <update id="updateCourierInfo" parameterType="Courier">
@@ -21,12 +21,12 @@
             <if test="tel != null and tel != ''">tel = #{tel},</if>
             <if test="password != null and password != ''">password = #{password},</if>
         </set>
-        where id = #{id}
+        where courierNo = #{courierNo}
     </update>
 
-    <select id="getCourierInfoById" parameterType="int" resultType="Courier">
+    <select id="getCourierInfoByCourierNo" parameterType="int" resultType="Courier">
         select * from db.courier
-        where id = #{id}
+        where courierNo = #{courierNo}
     </select>
 
     <select id="getCourierList" resultType="Courier">
@@ -36,7 +36,6 @@
     <select id="getCourierListByPojo" parameterType="Courier" resultType="Courier">
         select * from db.courier
         <where>
-            <if test="id != null and id != ''">And id=#{id}</if>
             <if test="courierNo != null and courierNo != ''">
                 AND courierNo = #{courierNo}
             </if>

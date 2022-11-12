@@ -5,33 +5,31 @@
 
 <mapper namespace="com.example.concerto.dao.ExpressDao">
 
-    <insert id="insertExpressByPojo" useGeneratedKeys="true" keyProperty="id" parameterType="Express">
+    <insert id="insertExpressByPojo" useGeneratedKeys="true" keyProperty="expressNo" parameterType="Express">
         insert into db.express
-        values (#{id}, #{expressNo}, #{expressCompany}, #{productLink}, #{senderTel}, #{recipientTel}, #{senderName},
+        values (#{expressNo}, #{expressCompany}, #{productLink}, #{senderTel}, #{recipientTel}, #{senderName},
                 #{recipientName}, #{senderAddress}, #{recipientAddress}, #{status})
     </insert>
 
-    <delete id="deleteExpressById" parameterType="int">
+    <delete id="deleteExpressByExpressNo" parameterType="int">
         delete
         from db.express
-        where id = #{id}
+        where expressNo = #{expressNo}
     </delete>
 
     <delete id="deleteExpressByPojo" parameterType="Express">
         delete from db.express
         <where>
-            <if test="id != null and id != ''">AND id=#{id},</if>
-            <if test="expressNo != null and expressNo != ''">AND expressNo=#{expressNo},</if>
-            <if test="expressCompany != null and expressCompany != ''">AND expressCompany=#{expressCompany},</if>
+            <if test="expressNo != null and expressNo != ''">AND expressNo=#{expressNo}</if>
+            <if test="expressCompany != null and expressCompany != ''">AND expressCompany=#{expressCompany}</if>
             <if test="productLink != null and productLink != ''">AND productLink=#{productlink},</if>
-            <if test="senderTel != null and senderTel != ''">AND senderTel=#{senderTel},</if>
-            <if test="recipientTel != null and recipientTel != ''">AND recipientTel=#{recipientTel},</if>
-            <if test="senderName != null and senderName != ''">AND senderName=#{senderName},</if>
-            <if test="recipientName != null and recipientName != ''">AND recipientName=#{recipientName},</if>
-            <if test="senderAddress != null and senderAddress != ''">AND senderAddress=#{senderAddress},</if>
-            <if test="recipientAddress != null and recipientAddress != ''">AND recipientAddress=#{recipientAddress},
-            </if>
-            <if test="status != null and status != ''">AND status=#{status},</if>
+            <if test="senderTel != null and senderTel != ''">AND senderTel=#{senderTel}</if>
+            <if test="recipientTel != null and recipientTel != ''">AND recipientTel=#{recipientTel}</if>
+            <if test="senderName != null and senderName != ''">AND senderName=#{senderName}</if>
+            <if test="recipientName != null and recipientName != ''">AND recipientName=#{recipientName}</if>
+            <if test="senderAddress != null and senderAddress != ''">AND senderAddress=#{senderAddress}</if>
+            <if test="recipientAddress != null and recipientAddress != ''">AND recipientAddress=#{recipientAddress}</if>
+            <if test="status != null and status != ''">AND status=#{status}</if>
         </where>
     </delete>
 
@@ -47,14 +45,8 @@
             <if test="recipientAddress != null and recipientAddress != ''">recipientAddress=#{recipientAddress},</if>
             <if test="status != null and status != ''">status=#{status},</if>
         </set>
-        where id = #{id}
+        where expressNo = #{expressNo}
     </update>
-
-    <select id="getExpressById" parameterType="int" resultType="Express">
-        select *
-        from db.express
-        where id = #{id}
-    </select>
 
     <select id="getExpressList" resultType="Express">
         select *
@@ -64,7 +56,6 @@
     <select id="getExpressListByPojo" parameterType="Express" resultType="Express">
         select * from db.express
         <where>
-            <if test="id != null and id != ''">And id=#{id}</if>
             <if test="expressNo != null and expressNo != ''">
                 AND expressNo LIKE "%"#{expressNo}"%"
             </if>
@@ -97,8 +88,7 @@
     </select>
 
     <select id="getExpressListByTel" parameterType="String" resultType="Express">
-        select id,
-               expessNo,
+        select e.expressNo,
                expressCompany,
                expressCompany,
                productLink,
@@ -115,8 +105,7 @@
           and cE.tel = #{tel}
     </select>
     <select id="getExpressListByTelAndStatus" resultType="Express">
-        select id,
-               expessNo,
+        select e.expressNo,
                expressCompany,
                expressCompany,
                productLink,
@@ -135,8 +124,7 @@
     </select>
 
     <select id="getExpressListByCourierNoAndStatus" resultType="Express">
-        select id,
-               expessNo,
+        select e.expressNo,
                expressCompany,
                expressCompany,
                productLink,

@@ -2,24 +2,23 @@ package com.example.concerto.controller.wx;
 
 import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Express;
-import com.example.concerto.service.wx.ClientService;
+import com.example.concerto.service.wx.WXClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/wx/client")
-public class ClientController {
+public class WXClientController {
     @Autowired
-    ClientService clientService;
+    WXClientService clientService;
 
     @RequestMapping("/insertExpress")
-    public CommonResponse insertExpress(int id, int expressNo, String expressCompany, String productLink, String senderTel, String recipientTel, String senderName, String recipientName, String senderAddress, String recipientAddress, int status) {
+    public CommonResponse insertExpress(String expressCompany, String productLink, String senderTel, String recipientTel, String senderName, String recipientName, String senderAddress, String recipientAddress) {
         Express express = new Express();
-        express.setId(id);
-        express.setExpressNo(expressNo);
         express.setExpressCompany(expressCompany);
         express.setProductLink(productLink);
         express.setSenderTel(senderTel);
@@ -28,6 +27,7 @@ public class ClientController {
         express.setRecipientName(recipientName);
         express.setSenderAddress(senderAddress);
         express.setRecipientAddress(recipientAddress);
+        express.setStatus(1);
         clientService.insertExpress(express);
         return new CommonResponse(200, "right", "");
     }

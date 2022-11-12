@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.concerto.dao.WxUserDao">
+    <insert id="insert" parameterType="WxUser">
+        insert into db.wxUser
+        values (#{openId}, #{skey}, #{createTime}, #{lastVisitTime}, #{sessionKey}, #{city}, #{province}, #{country},
+                #{avatarUrl}, #{gender}, #{nickname})
+    </insert>
+
+
+    <update id="updateById" parameterType="WxUser">
+        update db.wxUser
+        set skey=#{skey},
+            lastVisitTime=#{lastVisitTime}
+        where openId = #{openId}
+    </update>
+
+    <select id="selectById" resultType="WxUser">
+        select *
+        from db.wxUser
+        where openId = #{openId}
+    </select>
+
+</mapper>

@@ -1,24 +1,22 @@
 package com.example.concerto.controller.wx;
 
 import com.example.concerto.controller.response.CommonResponse;
-import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.Express;
-import com.example.concerto.service.wx.CourierService;
+import com.example.concerto.service.wx.WXCourierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/wx/courier")
-public class CourierController {
+public class WXCourierController {
     @Autowired
-    CourierService courierService;
+    WXCourierService courierService;
 
     @RequestMapping("/queryExpressListByStatus")
-    public CommonResponse queryExpresListByStatus(int courierNo, int status) {
+    public CommonResponse queryExpressListByStatus(int courierNo, int status) {
         List<Express> expresses = courierService.queryExpressListByStatus(courierNo, status);
         return new CommonResponse(200, "right", expresses);
     }

@@ -4,15 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.concerto.dao.StationDao">
-    <insert id="insertStation" useGeneratedKeys="true" keyProperty="id" parameterType="Station">
+    <insert id="insertStation" useGeneratedKeys="true" keyProperty="stationNo" parameterType="Station">
         insert into db.station
-        values (#{id}, #{stationNo}, #{address}, #{name})
+        values (#{stationNo}, #{address}, #{name})
     </insert>
 
     <delete id="deleteStationByStation" parameterType="Station">
         delete from db.station
         <where>
-            <if test="id != null and id != ''">And id=#{id}</if>
             <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
             <if test="address != null and address != ''">And address=#{address}</if>
             <if test="name != null and name != ''">And name=#{name}</if>
@@ -35,7 +34,6 @@
         select *
         from db.station
         <where>
-            <if test="id != null and id != ''">And id=#{id}</if>
             <if test="stationNo != null and stationNo != ''">And stationNo=#{stationNo}</if>
             <if test="address != null and address != ''">And address=#{address}</if>
             <if test="name != null and name != ''">And name=#{name}</if>

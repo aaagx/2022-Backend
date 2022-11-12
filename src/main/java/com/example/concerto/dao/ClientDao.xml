@@ -11,15 +11,15 @@
         where nickname like CONCAT('%', #{keyword}, '%')
     </select>
 
-    <insert id="insertClientInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Client">
+    <insert id="insertClientInfo" parameterType="Client">
         insert into db.client
-        values (#{id}, #{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt})
+        values (#{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt})
     </insert>
 
-    <delete id="deleteClientInfoById" parameterType="int">
+    <delete id="deleteClientInfoByTel" parameterType="String">
         delete
         from db.client
-        where id = #{id}
+        where tel=#{tel}
     </delete>
 
     <update id="updateClientInfo" parameterType="Client">
@@ -28,13 +28,13 @@
             <if test="nickName != null and nickName != ''">nickname=#{nickName},</if>
             <if test="password != null and password !=''">password=#{password},</if>
         </set>
-        where id = #{id}
+        where tel=#{tel}
     </update>
 
-    <select id="getClientInfoById" parameterType="int" resultType="Client">
+    <select id="getClientInfoByTel" parameterType="String" resultType="Client">
         select *
         from db.client
-        where id = #{id}
+        where tel = #{tel}
     </select>
 
     <select id="getClientList" resultType="Client">
@@ -46,7 +46,6 @@
         select *
         from db.client
         <where>
-            <if test="id != null and id != ''">And id=#{id}</if>
             <if test="tel != null and tel != ''">
                 AND tel LIKE "%"#{tel}"%"
             </if>

@@ -13,13 +13,11 @@ public interface ExpressDao {
 
     public void insertExpressByPojo(Express express);
 
-    public void deleteExpressById(int id);
+    public void deleteExpressByExpressNo(int expressNo);
 
     public void deleteExpressByPojo(Express express);
 
     public void updateExpressByPojo(Express express);
-
-    public Express getExpressById(int id);
 
     public Express getExpressByExpressNo(int expressNo);
 

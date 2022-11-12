@@ -72,6 +72,32 @@
             <artifactId>shiro-spring</artifactId>
             <version>1.8.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcmail-jdk16</artifactId>
+            <version>1.46</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>1.10.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>slf4j-api</groupId>
+                    <artifactId>org.slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>2.0.18</version>
+        </dependency>
 
 
     </dependencies>
@@ -84,6 +110,7 @@
                 <version>2.7.5</version>
             </plugin>
         </plugins>
+
 
         <resources>
             <!--注册dao包下mybatis 映射文件为资源目录 这样可以吧源代码里的东西放在资源文件里-->
