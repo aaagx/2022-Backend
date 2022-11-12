@@ -1,7 +1,6 @@
 package com.example.concerto.pojo;
 
 public class Courier {
-    Integer id;
     Integer courierNo;
     String realName;
     String tel;
@@ -9,8 +8,7 @@ public class Courier {
     String password;
     String salt;
 
-    public Courier(Integer id, Integer courierNo, String realName, String tel, String idCardNo, String password, String salt) {
-        this.id = id;
+    public Courier(Integer courierNo, String realName, String tel, String idCardNo, String password, String salt) {
         this.courierNo = courierNo;
         this.realName = realName;
         this.tel = tel;
@@ -20,14 +18,6 @@ public class Courier {
     }
 
     public Courier() {
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getCourierNo() {
@@ -81,8 +71,7 @@ public class Courier {
     @Override
     public String toString() {
         return "Courier{" +
-                "id=" + id +
-                ", courierNo=" + courierNo +
+                "courierNo=" + courierNo +
                 ", realName='" + realName + '\'' +
                 ", tel='" + tel + '\'' +
                 ", idCardNo='" + idCardNo + '\'' +

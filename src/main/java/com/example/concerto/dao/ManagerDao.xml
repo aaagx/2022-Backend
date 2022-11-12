@@ -5,24 +5,23 @@
 
 <mapper namespace="com.example.concerto.dao.ManagerDao">
 
-    <insert id="insertManageInfo" useGeneratedKeys="true" keyProperty="id" parameterType="Manager">
+    <insert id="insertManageInfo" useGeneratedKeys="true" keyProperty="managerNo" parameterType="Manager">
         insert into db.manager
-        values (#{id},#{account},#{managerNo},#{name},#{tel},#{password},#{salt})
+        values (#{managerNo},#{account},#{name},#{tel},#{password},#{salt})
     </insert>
 
-    <delete id="deleteManageInfoById" parameterType="int">
+    <delete id="deleteManageInfoByManagerNo" parameterType="int">
         delete from db.manager
-        where id = #{id}
+        where managerNo = #{managerNo}
     </delete>
 
     <delete id="deleteManageInfoByPojo" parameterType="Manager">
         delete from db.manager
         <where>
-            <if test="id != null and id != ''">AND id=#{id},</if>
-            <if test="account != null and account != ''">AND account=#{account},</if>
-            <if test="managerNo != null and managerNo != ''">AND managerNo=#{managerNo},</if>
-            <if test="name != null and name != ''">AND name=#{name},</if>
-            <if test="tel != null and tel != ''">AND tel=#{tel},</if>
+            <if test="account != null and account != ''">AND account=#{account}</if>
+            <if test="managerNo != null and managerNo != ''">AND managerNo=#{managerNo}</if>
+            <if test="name != null and name != ''">AND name=#{name}</if>
+            <if test="tel != null and tel != ''">AND tel=#{tel}</if>
         </where>
     </delete>
 
@@ -35,9 +34,9 @@
         </set>
     </update>
 
-    <select id="getManageInfoById" parameterType="int" resultType="Manager">
+    <select id="getManageInfoByManagerNo" parameterType="int" resultType="Manager">
         select * from db.manager
-        where id = #{id}
+        where managerNo = #{managerNo}
     </select>
 
     <select id="getManageInfoList" resultType="Manager">
@@ -47,7 +46,6 @@
     <select id="getManageInfoByPojo" parameterType="Manager" resultType="Manager">
         select * from db.manager
         <where>
-            <if test="id != null and id != ''">And id=#{id}</if>
             <if test="account != null and account != ''">
                 AND account LIKE "%"#{account}"%"
             </if>

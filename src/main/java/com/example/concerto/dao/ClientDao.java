@@ -27,9 +27,8 @@ public interface ClientDao {
     /**
      * 通过Id删除
      *
-     * @param id
      */
-    public void deleteClientInfoById(int id);
+    public void deleteClientInfoByTel(int tel);
 
     /**
      * 更新
@@ -42,10 +41,9 @@ public interface ClientDao {
     /**
      * 通过id获得Client信息
      *
-     * @param id
      * @return
      */
-    public Client getClientInfoById(int id);
+    public Client getClientInfoByTel(int tel);
 
     /**
      * 获得Client的全部列表信息

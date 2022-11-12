@@ -2,7 +2,6 @@ package com.example.concerto.service.wx;
 
 import com.example.concerto.dao.CourierExpressDao;
 import com.example.concerto.dao.ExpressDao;
-import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.CourierExpress;
 import com.example.concerto.pojo.Express;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CourierServiceImpl implements CourierService {
+public class WXCourierServiceImpl implements WXCourierService {
     @Autowired
     CourierExpressDao courierExpressDao;
     @Autowired

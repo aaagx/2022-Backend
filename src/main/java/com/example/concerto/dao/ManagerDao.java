@@ -12,13 +12,13 @@ public interface ManagerDao {
 
     public void insertManageInfo(Manager manager);
 
-    public void deleteManageInfoById(Integer id);
+    public void deleteManageInfoByManagerNo(int managerNo);
 
     public void deleteManageInfoByPojo(Manager manager);
 
     public void updateManageInfo(Manager manager);
 
-    public Manager getManageInfoById(Integer id);
+    public Manager getManageInfoByManagerNo(int managerNo);
 
     public List<Manager> getManageInfoList();
 

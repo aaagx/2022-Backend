@@ -24,7 +24,7 @@ public class ManagerController {
 
     @RequestMapping("/register")
     @ResponseBody
-    public String register(String account,int managerNo,String name,String tel,String password){
+    public String register(int managerNo,String account,String name,String tel,String password){
         Manager ifExit1 = managerService.getManagerInfoByTel(tel);
         if (ifExit1 != null){
             return "该号码已注册";

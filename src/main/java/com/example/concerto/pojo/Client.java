@@ -1,7 +1,6 @@
 package com.example.concerto.pojo;
 
 public class Client {
-    Integer id;
     String tel;
     String nickName;
     String realName;
@@ -12,22 +11,13 @@ public class Client {
     public Client() {
     }
 
-    public Client(Integer id, String tel, String nickName, String realName, String idCardNo, String password, String salt) {
-        this.id = id;
+    public Client(String tel, String nickName, String realName, String idCardNo, String password, String salt) {
         this.tel = tel;
         this.nickName = nickName;
         this.realName = realName;
         this.idCardNo = idCardNo;
         this.password = password;
         this.salt = salt;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getTel() {
@@ -81,8 +71,7 @@ public class Client {
     @Override
     public String toString() {
         return "Client{" +
-                "id=" + id +
-                ", tel='" + tel + '\'' +
+                "tel='" + tel + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", realName='" + realName + '\'' +
                 ", idCardNo='" + idCardNo + '\'' +
