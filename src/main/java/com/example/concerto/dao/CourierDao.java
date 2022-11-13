@@ -1,6 +1,7 @@
 package com.example.concerto.dao;
 
 import com.example.concerto.pojo.Courier;
+import com.example.concerto.pojo.Express;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -25,5 +26,7 @@ public interface CourierDao {
     public List<Courier> getCourierList();
 
     public List<Courier> getCourierListByPojo(Courier courier);
+
+    public Courier queryCourierByTel(String tel);
 
 }
