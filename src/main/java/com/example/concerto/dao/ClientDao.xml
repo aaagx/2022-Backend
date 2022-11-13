@@ -13,13 +13,13 @@
 
     <insert id="insertClientInfo" parameterType="Client">
         insert into db.client
-        values (#{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt})
+        values (#{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt}, #{addreess})
     </insert>
 
     <delete id="deleteClientInfoByTel" parameterType="String">
         delete
         from db.client
-        where tel=#{tel}
+        where tel = #{tel}
     </delete>
 
     <update id="updateClientInfo" parameterType="Client">
@@ -58,7 +58,15 @@
             <if test="idCardNo != null and idCardNo != ''">
                 AND idCardNo LIKE "%"#{idCardNo}"%"
             </if>
+            <if test="address != null and address != ''">
+                AND address LIKE "%"#{address}"%"
+            </if>
         </where>
     </select>
+    <update id="updateClientAddressByTel" parameterType="String">
+        update db.client
+        set address=#{address}
+        where tel=#{tel}
+    </update>
 
 </mapper>

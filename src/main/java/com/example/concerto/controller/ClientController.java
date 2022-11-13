@@ -32,7 +32,10 @@ public class ClientController {
 
     @RequestMapping("/register")
     @ResponseBody
+
     public String register(@RequestParam("tel") String tel,@RequestParam("nickname")String nickname,@RequestParam("realName")String realName,@RequestParam("idCardNo")String idCardNo,@RequestParam("password")String password){
+
+
         Client client = new Client();
         String salt = SaltUtil.getSalt(8);
         client.setTel(tel);
@@ -42,6 +45,7 @@ public class ClientController {
             client.setRealName(realName);
             client.setIdCardNo(idCardNo);
             client.setSalt(salt);
+            client.setAddress(address);
             Md5Hash MD5 = new Md5Hash(password,salt,1024);
             client.setPassword(MD5.toHex());
             clientService.register(client);

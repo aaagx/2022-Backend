@@ -1,7 +1,9 @@
 package com.example.concerto.service.wx;
 
+import com.example.concerto.dao.CourierDao;
 import com.example.concerto.dao.CourierExpressDao;
 import com.example.concerto.dao.ExpressDao;
+import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.CourierExpress;
 import com.example.concerto.pojo.Express;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,16 @@ public class WXCourierServiceImpl implements WXCourierService {
     CourierExpressDao courierExpressDao;
     @Autowired
     ExpressDao expressDao;
+    @Autowired
+    CourierDao courierDao;
 
     @Override
-    public void insertCourierExpressAndUpdateStatus(int courierNo, int expressNo,int status) {
+    public void insertCourierExpressAndUpdateStatus(int courierNo, int expressNo, int status) {
         CourierExpress courierExpress = new CourierExpress();
         courierExpress.setCourierNo(courierNo);
         courierExpress.setExpressNo(expressNo);
         courierExpressDao.insertCourierExpressInfo(courierExpress);
-        expressDao.updateExpressStatusByExpressNo(expressNo,status);
+        expressDao.updateExpressStatusByExpressNo(expressNo, status);
     }
 
     @Override
@@ -39,6 +43,12 @@ public class WXCourierServiceImpl implements WXCourierService {
 
     @Override
     public void updateExpressStatus(int expressNo, int status) {
-        expressDao.updateExpressStatusByExpressNo(expressNo,status);
+        expressDao.updateExpressStatusByExpressNo(expressNo, status);
+    }
+
+    @Override
+    public Courier queryCourierByTel(String tel) {
+        Courier courier = courierDao.queryCourierByTel(tel);
+        return courier;
     }
 }

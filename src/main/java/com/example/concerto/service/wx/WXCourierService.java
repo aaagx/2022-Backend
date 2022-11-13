@@ -1,5 +1,6 @@
 package com.example.concerto.service.wx;
 
+import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.Express;
 
 import java.util.List;
@@ -12,5 +13,7 @@ public interface WXCourierService {
     public Express queryExpressByExpressNo(int expressNo);
 
     public void updateExpressStatus(int expressNo,int status);
+
+    public Courier queryCourierByTel(String tel);
 
 }
