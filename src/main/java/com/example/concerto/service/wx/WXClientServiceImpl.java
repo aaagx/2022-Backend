@@ -1,9 +1,6 @@
 package com.example.concerto.service.wx;
 
-import com.example.concerto.dao.ClientExpressDao;
-import com.example.concerto.dao.CourierExpressDao;
-import com.example.concerto.dao.ExpressDao;
-import com.example.concerto.dao.StationExpressDao;
+import com.example.concerto.dao.*;
 import com.example.concerto.pojo.ClientExpress;
 import com.example.concerto.pojo.CourierExpress;
 import com.example.concerto.pojo.Express;
@@ -23,6 +20,8 @@ public class WXClientServiceImpl implements WXClientService {
     StationExpressDao stationExpressDao;
     @Autowired
     CourierExpressDao courierExpressDao;
+    @Autowired
+    ClientDao clientDao;
 
     @Override
     public void insertExpress(Express express) {
@@ -58,6 +57,9 @@ public class WXClientServiceImpl implements WXClientService {
         StationExpress stationExpress = new StationExpress();
         stationExpress.setExpressNo(expressNo);
         stationExpressDao.deleteStationExpressByStationExpress(stationExpress);
-
+    }
+    @Override
+    public void updateClientAddressByTel(String address, String tel) {
+        clientDao.updateClientAddressByTel(address,tel);
     }
 }

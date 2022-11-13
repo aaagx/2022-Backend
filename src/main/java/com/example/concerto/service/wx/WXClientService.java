@@ -12,4 +12,6 @@ public interface WXClientService {
     public Express queryExpressByExpressNo(int expressNo);
 
     public void deleteExpressByExpressNo(int expressNo);
+
+    void updateClientAddressByTel(String address,String tel);
 }

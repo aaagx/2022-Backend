@@ -50,5 +50,9 @@
             </if>
         </where>
     </select>
+    <select id="queryCourierByTel" resultType="Courier">
+        select * from db.courier
+        where tel=#{tel}
+    </select>
 
 </mapper>
