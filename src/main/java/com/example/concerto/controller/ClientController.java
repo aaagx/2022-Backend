@@ -32,10 +32,8 @@ public class ClientController {
 
     @RequestMapping("/register")
     @ResponseBody
-
+    
     public String register(@RequestParam("tel") String tel,@RequestParam("nickname")String nickname,@RequestParam("realName")String realName,@RequestParam("idCardNo")String idCardNo,@RequestParam("password")String password){
-
-
         Client client = new Client();
         String salt = SaltUtil.getSalt(8);
         client.setTel(tel);
