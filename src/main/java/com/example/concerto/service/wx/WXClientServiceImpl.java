@@ -19,8 +19,6 @@ public class WXClientServiceImpl implements WXClientService {
     @Autowired
     ExpressDao expressDao;
     @Autowired
-    ClientExpressDao clientExpressDao;
-    @Autowired
     StationExpressDao stationExpressDao;
     @Autowired
     CourierExpressDao courierExpressDao;
@@ -34,7 +32,7 @@ public class WXClientServiceImpl implements WXClientService {
 
     @Override
     public List<Express> queryExpressListByStatus(String tel, int status) {
-        List<Express> expressList = expressDao.getExpressListByTelAndStatus(tel, status);
+        List<Express> expressList = expressDao.getRecExpressListByTelAndStatus(tel, status);
         return expressList;
     }
 
@@ -50,12 +48,8 @@ public class WXClientServiceImpl implements WXClientService {
         express.setExpressNo(expressNo);
         expressDao.deleteExpressByPojo(express);
 
-        ClientExpress clientExpress = new ClientExpress();
-        clientExpress.setExpressNo(expressNo);
-        clientExpressDao.deleteClientExpress(clientExpress);
-
         CourierExpress courierExpress = new CourierExpress();
-        clientExpress.setExpressNo(expressNo);
+        courierExpress.setExpressNo(expressNo);
         courierExpressDao.deleteCourierExpressInfo(courierExpress);
 
         StationExpress stationExpress = new StationExpress();
