@@ -26,7 +26,6 @@ public interface ClientDao {
 
     /**
      * 通过Id删除
-     *
      */
     public void deleteClientInfoByTel(int tel);
 
@@ -59,6 +58,8 @@ public interface ClientDao {
      * @return
      */
     public List<Client> getClientListByPojo(Client client);
+
+    public void updateClientAddressByTel(String address, String tel);
 
 }
 
