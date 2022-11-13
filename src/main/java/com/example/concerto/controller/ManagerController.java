@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,7 +25,7 @@ public class ManagerController {
 
     @RequestMapping("/register")
     @ResponseBody
-    public String register(int managerNo,String account,String name,String tel,String password){
+    public String register(@RequestParam("managerNo")int managerNo,@RequestParam("account")String account,@RequestParam("name")String name,@RequestParam("tel")String tel,@RequestParam("password")String password){
         Manager ifExit1 = managerService.getManagerInfoByTel(tel);
         if (ifExit1 != null){
             return "该号码已注册";
@@ -49,9 +50,12 @@ public class ManagerController {
 
 
 
+
+
+
     @RequestMapping("/login")
     @ResponseBody
-    public String login(String tel, String password, String loginType, Model model){
+    public String login(@RequestParam("tel")String tel, @RequestParam("password")String password, @RequestParam("loginType")String loginType, Model model){
         /**
          * 使用Shiro编写认证操作
          */

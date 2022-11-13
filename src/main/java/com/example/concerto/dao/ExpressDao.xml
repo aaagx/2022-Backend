@@ -87,39 +87,29 @@
         </where>
     </select>
 
-    <select id="getExpressListByTel" parameterType="String" resultType="Express">
-        select e.expressNo,
-               expressCompany,
-               expressCompany,
-               productLink,
-               senderTel,
-               recipientTel,
-               senderName,
-               recipientName,
-               senderAddress,
-               recipientAddress,
-               status
-        from db.express e,
-             db.clientExpress cE
-        where e.expressNo = cE.expressNo
-          and cE.tel = #{tel}
+    <select id="getRecExpressListByTel" parameterType="String" resultType="Express">
+        select *
+        from db.express e
+        where e.recipientTel = #{recipientTel}
     </select>
-    <select id="getExpressListByTelAndStatus" resultType="Express">
-        select e.expressNo,
-               expressCompany,
-               expressCompany,
-               productLink,
-               senderTel,
-               recipientTel,
-               senderName,
-               recipientName,
-               senderAddress,
-               recipientAddress,
-               status
-        from db.express e,
-             db.clientExpress cE
-        where e.expressNo = cE.expressNo
-          and cE.tel = #{tel}
+
+    <select id="getSendExpressListByTel" parameterType="String" resultType="Express">
+        select *
+        from db.express e
+        where e.senderTel = #{senderTel}
+    </select>
+
+    <select id="getRecExpressListByTelAndStatus" resultType="Express">
+        select *
+        from db.express e
+        where e.recipientTel = #{recipientTel}
+          and e.status = #{status}
+    </select>
+
+    <select id="getSendExpressListByTelAndStatus" resultType="Express">
+        select *
+        from db.express e
+        where e.senderTel = #{senderTel}
           and e.status = #{status}
     </select>
 

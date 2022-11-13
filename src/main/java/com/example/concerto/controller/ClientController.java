@@ -1,8 +1,12 @@
 package com.example.concerto.controller;
 
+import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Client;
+import com.example.concerto.pojo.Express;
 import com.example.concerto.pojo.UserToken;
+import com.example.concerto.service.ClientService;
 import com.example.concerto.service.ClientServiceImpl;
+import com.example.concerto.service.ExpressService;
 import com.example.concerto.utils.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -11,19 +15,24 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/client")
 public class ClientController {
 
     @Autowired
-    ClientServiceImpl clientService;
+    ClientService clientService;
+
+    @Autowired
+    ExpressService expressService;
+
 
     @RequestMapping("/register")
     @ResponseBody
+
     public String register(String tel,String nickname,String realName,String idCardNo,String password,String address){
         Client client = new Client();
         String salt = SaltUtil.getSalt(8);
@@ -46,7 +55,7 @@ public class ClientController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public String login(String tel, String password, String loginType, Model model){
+    public String login(@RequestParam("tel")String tel, @RequestParam("password")String password, @RequestParam("loginType")String loginType, Model model){
         /**
          * 使用Shiro编写认证操作
          */
@@ -67,5 +76,29 @@ public class ClientController {
             model.addAttribute("msg","密码错误");
             return "密码错误";
         }
+    }
+
+    /**
+     * 获得用户未取件(status=3)的快递列表
+     * @return
+     */
+    @PostMapping("/getNotPickedUpExpress")
+    public CommonResponse getNotPickedUpExpress(@RequestParam("tel")String tel){
+        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 3);
+        return new CommonResponse(200,"成功",expressList);
+    }
+
+    /**
+     * 用户取件->修改快递的状态为4:已取件
+     * @param expressNo
+     * @return
+     */
+    @PostMapping("/doPickUpExpress")
+    public CommonResponse doPickUpExpress(@RequestParam("expressNo") int expressNo){
+        Express express = new Express();
+        express.setStatus(4);
+        express.setExpressNo(expressNo);
+        expressService.updateExpressByPojo(express);
+        return new CommonResponse(200,"成功",null);
     }
 }

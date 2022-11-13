@@ -5,11 +5,10 @@ import com.example.concerto.pojo.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ClientServiceImpl implements ClilentService{
+public class ClientServiceImpl implements ClientService {
     @Autowired
     ClientDao clientDao;
 
