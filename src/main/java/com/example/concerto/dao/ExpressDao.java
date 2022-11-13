@@ -25,9 +25,13 @@ public interface ExpressDao {
 
     public List<Express> getExpressListByPojo(Express express);
 
-    public List<Express> getExpressListByTel(String tel);
+    public List<Express> getRecExpressListByTel(String tel);
 
-    public List<Express> getExpressListByTelAndStatus(@Param("tel") String tel, @Param("status") Integer status);
+    public List<Express> getSendExpressListByTel(String tel);
+
+    public List<Express> getRecExpressListByTelAndStatus(@Param("tel") String tel, @Param("status") Integer status);
+
+    public List<Express> getSendExpressListByTelAndStatus(@Param("tel") String tel, @Param("status") Integer status);
 
     public List<Express> getExpressListByCourierNoAndStatus(@Param("courierNo") int courierNo, @Param("status") Integer status);
 

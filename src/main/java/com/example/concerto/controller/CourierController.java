@@ -13,6 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class CourierController {
 
     @RequestMapping("/register")
     @ResponseBody
-    public String register(int courierNo,String realName,String tel,String idCardNo,String password) {
+    public String register(@RequestParam("courierNo")int courierNo, @RequestParam("realName")String realName, @RequestParam("tel")String tel, @RequestParam("idCardNo")String idCardNo, @RequestParam("password")String password) {
         Courier ifExit1 = courierService.getCourierInfoByTel(tel);
         if (ifExit1 != null){
             return "该号码已注册";
@@ -49,7 +50,7 @@ public class CourierController {
 
     @RequestMapping("/login")
     @ResponseBody
-    public String login(String tel, String password, String loginType, Model model){
+    public String login(@RequestParam("tel")String tel, @RequestParam("password")String password, @RequestParam("loginType")String loginType, Model model){
         /**
          * 使用Shiro编写认证操作
          */

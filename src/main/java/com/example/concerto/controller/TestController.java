@@ -2,13 +2,10 @@ package com.example.concerto.controller;
 
 import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Client;
-import com.example.concerto.service.ClientServiceImpl;
-import com.example.concerto.service.ClilentService;
+import com.example.concerto.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * @author sarise
@@ -19,7 +16,7 @@ import java.util.List;
 public class TestController {
 
     @Autowired
-    ClilentService clilentService;
+    ClientService clilentService;
 
     @RequestMapping("/rsp")
     public CommonResponse testCommonResponse(){
