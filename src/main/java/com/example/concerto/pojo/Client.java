@@ -7,17 +7,19 @@ public class Client {
     String idCardNo;
     String password;
     String salt;
+    String address;
 
-    public Client() {
-    }
-
-    public Client(String tel, String nickName, String realName, String idCardNo, String password, String salt) {
+    public Client(String tel, String nickName, String realName, String idCardNo, String password, String salt, String address) {
         this.tel = tel;
         this.nickName = nickName;
         this.realName = realName;
         this.idCardNo = idCardNo;
         this.password = password;
         this.salt = salt;
+        this.address = address;
+    }
+
+    public Client() {
     }
 
     public String getTel() {
@@ -68,6 +70,14 @@ public class Client {
         this.salt = salt;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "Client{" +
@@ -77,6 +87,7 @@ public class Client {
                 ", idCardNo='" + idCardNo + '\'' +
                 ", password='" + password + '\'' +
                 ", salt='" + salt + '\'' +
+                ", address='" + address + '\'' +
                 '}';
     }
 }
