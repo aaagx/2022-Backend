@@ -142,6 +142,11 @@
         set status = #{status}
         where expressNo = #{expressNo}
     </update>
+    <select id="getCourierTel" parameterType="int" resultType="String">
+        select c.tel
+        from courierExpress cE,courier c
+        where cE.expressNo=#{expressNo} and c.courierNo=cE.courierNo
+    </select>
 
 
 </mapper>

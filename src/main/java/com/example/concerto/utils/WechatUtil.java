@@ -18,8 +18,8 @@ public class WechatUtil {
     public static JSONObject getSessionKeyOrOpenId(String code) {
         String requestUrl = "https://api.weixin.qq.com/sns/jscode2session";
         Map<String, String> requestUrlParam = new HashMap<>();
-        requestUrlParam.put("appid", "小程序的appId");//要改
-        requestUrlParam.put("secret", "小程序的secret");//要改
+        requestUrlParam.put("appid", "wxad22b8729a17d3a6");
+        requestUrlParam.put("secret", "218f1a67f70247dc754fdc9f91cc2a97");
         requestUrlParam.put("js_code", code);
         requestUrlParam.put("grant_type", "authorization_code");
         JSONObject jsonObject = JSON.parseObject(HttpClientUtil.doPost(requestUrl, requestUrlParam));
