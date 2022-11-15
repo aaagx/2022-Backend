@@ -21,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/client")
+@CrossOrigin
 public class ClientController {
 
     @Autowired
@@ -32,6 +33,7 @@ public class ClientController {
 
     @RequestMapping("/register")
     @ResponseBody
+    @CrossOrigin
     
     public String register(@RequestParam("tel") String tel,@RequestParam("nickname")String nickname,@RequestParam("realName")String realName,@RequestParam("idCardNo")String idCardNo,@RequestParam("password")String password,@RequestParam("address")String address){
         Client client = new Client();
@@ -83,9 +85,47 @@ public class ClientController {
      * @return
      */
     @PostMapping("/getNotPickedUpExpress")
-    public CommonResponse getNotPickedUpExpress(@RequestParam("tel")String tel){
+    @ResponseBody
+    @CrossOrigin
+    public  List<Express> getNotPickedUpExpress(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        Client user=(Client) subject.getPrincipal();
+        if(user==null)
+            return null;
+        String tel=user.getTel();
         List<Express> expressList = expressService.getNotPickedUpExpress(tel, 3);
-        return new CommonResponse(200,"成功",expressList);
+        model.addAttribute("data",expressList);
+        model.addAttribute("msg","成功");
+        return expressList;
+    }
+
+    @PostMapping("/getTransExpress")
+    @ResponseBody
+    @CrossOrigin
+    public  List<Express> getTransExpress(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        Client user=(Client) subject.getPrincipal();
+        if(user==null)
+            return null;
+        String tel=user.getTel();
+        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 2);
+        model.addAttribute("data",expressList);
+        model.addAttribute("msg","成功");
+        return expressList;
+    }
+    @PostMapping("/getNotStartExpress")
+    @ResponseBody
+    @CrossOrigin
+    public  List<Express> getNotStartExpress(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        Client user=(Client) subject.getPrincipal();
+        if(user==null)
+            return null;
+        String tel=user.getTel();
+        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 1);
+        model.addAttribute("data",expressList);
+        model.addAttribute("msg","成功");
+        return expressList;
     }
 
     /**
@@ -100,5 +140,13 @@ public class ClientController {
         express.setExpressNo(expressNo);
         expressService.updateExpressByPojo(express);
         return new CommonResponse(200,"成功",null);
+    }
+    @RequestMapping("/info")
+    public Client getUserInfo(){
+        Subject subject = SecurityUtils.getSubject();
+        Client user=(Client) subject.getPrincipal();
+        user.setPassword(null);
+        user.setSalt(null);
+        return user;
     }
 }

@@ -102,7 +102,7 @@
     <select id="getRecExpressListByTelAndStatus" resultType="Express">
         select *
         from db.express e
-        where e.recipientTel = #{recipientTel}
+        where e.recipientTel = #{tel}
           and e.status = #{status}
     </select>
 

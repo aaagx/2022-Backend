@@ -13,7 +13,7 @@
 
     <insert id="insertClientInfo" parameterType="Client">
         insert into db.client
-        values (#{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt}, #{addreess})
+        values (#{tel}, #{nickName}, #{realName}, #{idCardNo}, #{password}, #{salt}, #{address})
     </insert>
 
     <delete id="deleteClientInfoByTel" parameterType="String">
