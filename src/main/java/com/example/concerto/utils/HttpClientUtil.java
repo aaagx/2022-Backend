@@ -1,10 +1,7 @@
 package com.example.concerto.utils;
 
 
-import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -19,7 +16,6 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,7 +72,8 @@ public class HttpClientUtil {
                 httpPost.setEntity(entity);
             }
             response = httpClient.execute(httpPost);
-            EntityUtils.toString(response.getEntity(), "utf-8");
+            resultString=EntityUtils.toString(response.getEntity(), "utf-8");
+            System.out.println(resultString);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

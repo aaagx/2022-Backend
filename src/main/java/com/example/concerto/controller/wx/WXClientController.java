@@ -2,6 +2,7 @@ package com.example.concerto.controller.wx;
 
 import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Express;
+import com.example.concerto.service.ExpressService;
 import com.example.concerto.service.wx.WXClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,11 @@ import java.util.List;
 public class WXClientController {
     @Autowired
     WXClientService clientService;
+    @Autowired
+    ExpressService expressService;
 
     @RequestMapping("/insertExpress")
     public CommonResponse insertExpress(@RequestParam("expressCompany") String expressCompany,
-                                        @RequestParam("productLink") String productLink,
                                         @RequestParam("senderTel") String senderTel,
                                         @RequestParam("recipientTel") String recipientTel,
                                         @RequestParam("senderName") String senderName,
@@ -29,7 +31,6 @@ public class WXClientController {
                                         @RequestParam("recipientAddress") String recipientAddress) {
         Express express = new Express();
         express.setExpressCompany(expressCompany);
-        express.setProductLink(productLink);
         express.setSenderTel(senderTel);
         express.setRecipientTel(recipientTel);
         express.setSenderName(senderName);
@@ -38,7 +39,7 @@ public class WXClientController {
         express.setRecipientAddress(recipientAddress);
         express.setStatus(1);
         clientService.insertExpress(express);
-        return new CommonResponse(200, "right", "");
+        return new CommonResponse(200, "寄件成功", "");
     }
 
     @RequestMapping("/queryExpressListByStatus")
@@ -53,10 +54,23 @@ public class WXClientController {
         return new CommonResponse(200, "right", express);
     }
 
-    @RequestMapping("/deleteExpressByExpressNo")
-    public CommonResponse deleteExpressByExpressNo(@RequestParam("expressNo") int expressNo) {
-        clientService.deleteExpressByExpressNo(expressNo);
+    @RequestMapping("/updateExpressByExpressNo")
+    public CommonResponse updateExpressByExpressNo(@RequestParam("expressNo") int expressNo) {
+        Express express = new Express();
+        express.setExpressNo(expressNo);
+        express.setStatus(4);
+        expressService.updateExpressByPojo(express);
         return new CommonResponse(200, "right", "");
+    }
+
+    @RequestMapping("/getCourierTel")
+    public CommonResponse getCourierTel(@RequestParam("expressNo")int expressNo){
+        String courierTel = expressService.getCourierTel(expressNo);
+        if(courierTel ==null){
+            return new CommonResponse(500,"没有快递员接单","");
+        }else{
+            return new CommonResponse(200,"快递员电话",courierTel);
+        }
     }
 
     @RequestMapping("/updateClientAddressByTel")

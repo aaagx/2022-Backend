@@ -21,4 +21,9 @@ public class ExpressServiceImpl implements ExpressService{
     public void updateExpressByPojo(Express express) {
         expressDao.updateExpressByPojo(express);
     }
+
+    @Override
+    public String getCourierTel(int expressNo) {
+        return expressDao.getCourierTel(expressNo);
+    }
 }

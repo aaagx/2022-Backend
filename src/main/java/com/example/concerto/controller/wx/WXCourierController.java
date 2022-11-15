@@ -45,10 +45,4 @@ public class WXCourierController {
         courierService.updateExpressStatus(expressNo, 3);
         return new CommonResponse(200, "right", "");
     }
-
-    @RequestMapping("/login")
-    public CommonResponse login(@RequestParam("tel") String tel) {
-        Courier courier = courierService.queryCourierByTel(tel);
-        return new CommonResponse(200, "right", tel);
-    }
 }

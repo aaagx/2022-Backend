@@ -8,4 +8,6 @@ public interface ExpressService {
     public List<Express> getNotPickedUpExpress(String tel, int status);
 
     public void updateExpressByPojo(Express express);
+
+    public String getCourierTel(int expressNo);
 }

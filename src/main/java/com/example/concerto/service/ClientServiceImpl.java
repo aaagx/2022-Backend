@@ -20,8 +20,7 @@ public class ClientServiceImpl implements ClientService {
         if (list.size() == 0){
             return null;
         }
-        Client returnClient = new Client();
-        returnClient = list.get(0);
+        Client returnClient = list.get(0);
         return returnClient;
     }
 
