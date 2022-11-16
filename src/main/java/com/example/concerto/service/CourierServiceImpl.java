@@ -37,4 +37,16 @@ public class CourierServiceImpl implements CourierService{
     public void register(Courier courier) {
         courierDao.insertCourierInfo(courier);
     }
+
+    @Override
+    public void deleteCourierInfoByCourierNo(int courierNo) {
+        courierDao.deleteCourierInfoByCourierNo(courierNo);
+    }
+
+    @Override
+    public List<Courier> getCourierListByStationNo(int stationNo) {
+        List<Courier> courierList = courierDao.getCourierListByStationNo(stationNo);
+        return courierList;
+    }
+
 }

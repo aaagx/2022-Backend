@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/wx/courier")
 public class WXCourierController {
@@ -19,11 +20,13 @@ public class WXCourierController {
     @RequestMapping("/queryExpressListByStatus")
     public CommonResponse queryExpressListByStatus(@RequestParam("courierNo") int courierNo, @RequestParam("status") int status) {
         ArrayList<Express> expresses = new ArrayList<>();
-        if (status == 3 || status == 4) {
+        if (status == 0) {
+            expresses.addAll(courierService.queryExpressListByStatus(courierNo, 2));
+        } else if (status == 1) {
             expresses.addAll(courierService.queryExpressListByStatus(courierNo, 3));
+        } else if (status == 2) {
             expresses.addAll(courierService.queryExpressListByStatus(courierNo, 4));
-        } else {
-            expresses.addAll(courierService.queryExpressListByStatus(courierNo, status));
+            expresses.addAll(courierService.queryExpressListByStatus(courierNo, 5));
         }
         return new CommonResponse(200, "right", expresses);
     }
@@ -42,7 +45,7 @@ public class WXCourierController {
 
     @RequestMapping("/updateExpressStatus")
     public CommonResponse updateExpressStatus(@RequestParam("expressNo") int expressNo) {
-        courierService.updateExpressStatus(expressNo, 3);
+        courierService.updateExpressStatus(expressNo, 4);
         return new CommonResponse(200, "right", "");
     }
 }

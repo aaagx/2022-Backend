@@ -1,9 +1,12 @@
 package com.example.concerto.controller;
 
+import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Client;
 import com.example.concerto.pojo.Courier;
+import com.example.concerto.pojo.Express;
 import com.example.concerto.pojo.UserToken;
 import com.example.concerto.service.CourierServiceImpl;
+import com.example.concerto.service.ExpressService;
 import com.example.concerto.utils.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -17,12 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/courier")
 public class CourierController {
 
     @Autowired
     CourierServiceImpl courierService;
+    @Autowired
+    ExpressService expressService;
 
     @RequestMapping("/register")
     @ResponseBody
@@ -73,4 +80,44 @@ public class CourierController {
         }
     }
 
+    /**
+     * 快递员获取所有已经指派给自己但未接单的快递
+     * 1:未指派 2:待接单 3:派送中 4:已送达未取件 5:用户取件
+     * @param courierNo
+     * @return
+     */
+    @RequestMapping("/getToBeDeliveredExpress")
+    public CommonResponse getToBeDeliveredExpress(@RequestParam("courierNo")int courierNo){
+        int status = 2;
+        List<Express> expressList = expressService.getExpressListByCourierNoAndStatus(courierNo, status);
+        return new CommonResponse(200,"成功",expressList);
+    }
+
+    /**
+     * 快递员取件 快递改为派送中
+     * @param expressNo
+     * @return
+     */
+    @RequestMapping("/doCourierPickUpExpress")
+    public CommonResponse doCourierPickUpExpress(@RequestParam("expressNo")int expressNo){
+        Express express = new Express();
+        express.setExpressNo(expressNo);
+        express.setStatus(3);
+        expressService.updateExpressByPojo(express);
+        return new CommonResponse(200,"成功",null);
+    }
+
+    /**
+     * 快递员确认已送达 将快递状态修改为 已送达用户未取件状态
+     * @param expressNo
+     * @return
+     */
+    @RequestMapping("/doConfirmDeliverExpress")
+    public CommonResponse doConfirmDeliverExpress(@RequestParam("expressNo")int expressNo){
+        Express express = new Express();
+        express.setExpressNo(expressNo);
+        express.setStatus(4);
+        expressService.updateExpressByPojo(express);
+        return new CommonResponse(200,"成功",null);
+    }
 }

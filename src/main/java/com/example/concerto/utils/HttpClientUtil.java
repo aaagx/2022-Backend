@@ -72,7 +72,7 @@ public class HttpClientUtil {
                 httpPost.setEntity(entity);
             }
             response = httpClient.execute(httpPost);
-            resultString=EntityUtils.toString(response.getEntity(), "utf-8");
+            resultString = EntityUtils.toString(response.getEntity(), "utf-8");
             System.out.println(resultString);
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,25 +85,27 @@ public class HttpClientUtil {
         }
         return resultString;
     }
-    public static String doPost(String url){
-        return doPost(url,null);
+
+    public static String doPost(String url) {
+        return doPost(url, null);
     }
-    public static String doPostJson(String url,String json){
+
+    public static String doPostJson(String url, String json) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        CloseableHttpResponse response=null;
-        String resultString ="";
-        try{
+        CloseableHttpResponse response = null;
+        String resultString = "";
+        try {
             HttpPost httpPost = new HttpPost(url);
             StringEntity entity = new StringEntity(json, ContentType.APPLICATION_JSON);
             httpPost.setEntity(entity);
             response = httpClient.execute(httpPost);
-            resultString=EntityUtils.toString(response.getEntity(),"utf-8");
-        }catch (Exception e){
+            resultString = EntityUtils.toString(response.getEntity(), "utf-8");
+        } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             try {
                 response.close();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

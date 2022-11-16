@@ -17,7 +17,7 @@ public interface CourierDao {
      */
     public void insertCourierInfo(Courier courier);
 
-    public void deteleCourierInfoByCourierNo(int courierNo);
+    public void deleteCourierInfoByCourierNo(int courierNo);
 
     public void updateCourierInfo(Courier courier);
 
@@ -28,5 +28,7 @@ public interface CourierDao {
     public List<Courier> getCourierListByPojo(Courier courier);
 
     public Courier queryCourierByTel(String tel);
+
+    public List<Courier> getCourierListByStationNo(int stationNo);
 
 }

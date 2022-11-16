@@ -44,12 +44,27 @@ public class WXClientController {
 
     @RequestMapping("/queryExpressListByStatus")
     public CommonResponse queryExpressListByStatus(@RequestParam("tel") String tel, @RequestParam("status") int status) {
-        List<Express> expresses = clientService.queryExpressListByStatus(tel, status);
+        List<Express> expresses = new ArrayList<>();
+        if (status == 1) {
+            expresses.addAll(clientService.querySendExpressListByStatus(tel, 1));
+        } else if (status == 2) {
+            expresses.addAll(clientService.queryExpressListByStatus(tel, 2));
+            expresses.addAll(clientService.querySendExpressListByStatus(tel, 2));
+            expresses.addAll(clientService.queryExpressListByStatus(tel, 3));
+            expresses.addAll(clientService.querySendExpressListByStatus(tel, 3));
+        } else if (status == 3) {
+            expresses.addAll(clientService.queryExpressListByStatus(tel, 4));
+        } else if (status == 4) {
+            expresses.addAll(clientService.queryExpressListByStatus(tel, 5));
+            expresses.addAll(clientService.querySendExpressListByStatus(tel, 5));
+        } else {
+            return new CommonResponse(500, "未知status", "");
+        }
         return new CommonResponse(200, "right", expresses);
     }
 
     @RequestMapping("/queryExpressByExpressNo")
-    public CommonResponse queryExpressByExpressNo(@RequestParam("expressNo") int expressNo) {
+    public CommonResponse queryExpressByExpressNo(@RequestParam("expressNo") int expressNo) { n
         Express express = clientService.queryExpressByExpressNo(expressNo);
         return new CommonResponse(200, "right", express);
     }
@@ -58,18 +73,19 @@ public class WXClientController {
     public CommonResponse updateExpressByExpressNo(@RequestParam("expressNo") int expressNo) {
         Express express = new Express();
         express.setExpressNo(expressNo);
-        express.setStatus(4);
+        express.setStatus(5);
         expressService.updateExpressByPojo(express);
+
         return new CommonResponse(200, "right", "");
     }
 
     @RequestMapping("/getCourierTel")
-    public CommonResponse getCourierTel(@RequestParam("expressNo")int expressNo){
+    public CommonResponse getCourierTel(@RequestParam("expressNo") int expressNo) {
         String courierTel = expressService.getCourierTel(expressNo);
-        if(courierTel ==null){
-            return new CommonResponse(500,"没有快递员接单","");
-        }else{
-            return new CommonResponse(200,"快递员电话",courierTel);
+        if (courierTel == null) {
+            return new CommonResponse(500, "没有快递员接单", "");
+        } else {
+            return new CommonResponse(200, "快递员电话", courierTel);
         }
     }
 
