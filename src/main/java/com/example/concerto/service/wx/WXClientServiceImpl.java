@@ -60,4 +60,10 @@ public class WXClientServiceImpl implements WXClientService {
     public void updateClientAddressByTel(String address, String tel) {
         clientDao.updateClientAddressByTel(address,tel);
     }
+
+    @Override
+    public List<Express> querySendExpressListByStatus(String tel, int status) {
+        List<Express> expressList = expressDao.getSendExpressListByTelAndStatus(tel, status);
+        return expressList;
+    }
 }

@@ -50,7 +50,7 @@ public class WechatUtil {
                 String result = new String(resultByte, "UTF-8");
                 return JSON.parseObject(result);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
         return null;
