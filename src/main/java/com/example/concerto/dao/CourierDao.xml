@@ -55,4 +55,9 @@
         where tel=#{tel}
     </select>
 
+    <select id="getCourierListByStationNo" resultType="Courier" parameterType="int">
+        select * from db.courier c,db.stationCourier sc
+        where c.courierNo = sc.courierNo
+        and sc.stationNo = #{stationNo}
+    </select>
 </mapper>

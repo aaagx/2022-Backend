@@ -114,8 +114,7 @@
     </select>
 
     <select id="getExpressListByCourierNoAndStatus" resultType="Express">
-        select e.expressNo,
-               expressCompany,
+        select distinct (e.expressNo),
                expressCompany,
                productLink,
                senderTel,

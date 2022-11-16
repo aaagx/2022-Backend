@@ -11,6 +11,12 @@ import java.util.List;
 public class ExpressServiceImpl implements ExpressService{
     @Autowired
     ExpressDao expressDao;
+
+    @Override
+    public void insertExpressByPojo(Express express) {
+        expressDao.insertExpressByPojo(express);
+    }
+
     @Override
     public List<Express> getNotPickedUpExpress(String tel, int status) {
         List<Express> expressList = expressDao.getRecExpressListByTelAndStatus(tel, status);
@@ -25,5 +31,16 @@ public class ExpressServiceImpl implements ExpressService{
     @Override
     public String getCourierTel(int expressNo) {
         return expressDao.getCourierTel(expressNo);
+    }
+
+    @Override
+    public List<Express> getExpressListByCourierNoAndStatus(int courierNo, Integer status) {
+        List<Express> expressList = expressDao.getExpressListByCourierNoAndStatus(courierNo, status);
+        return expressList;
+    }
+
+    @Override
+    public void deleteExpressByExpressNo(int expressNo) {
+        expressDao.deleteExpressByExpressNo(expressNo);
     }
 }
