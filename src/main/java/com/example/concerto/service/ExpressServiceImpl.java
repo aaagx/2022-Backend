@@ -23,6 +23,12 @@ public class ExpressServiceImpl implements ExpressService{
     }
 
     @Override
+    public List<Express> getExpressBySender(String tel) {
+        List<Express> expressList = expressDao.getSendExpressListByTel(tel);
+        return expressList;
+    }
+
+    @Override
     public String getCourierTel(int expressNo) {
         return expressDao.getCourierTel(expressNo);
     }

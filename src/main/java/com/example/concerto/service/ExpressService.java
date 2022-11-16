@@ -10,4 +10,6 @@ public interface ExpressService {
     public void updateExpressByPojo(Express express);
 
     public String getCourierTel(int expressNo);
+
+    public List<Express> getExpressBySender(String tel);
 }

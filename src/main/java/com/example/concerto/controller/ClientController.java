@@ -3,10 +3,12 @@ package com.example.concerto.controller;
 import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Client;
 import com.example.concerto.pojo.Express;
+import com.example.concerto.pojo.Station;
 import com.example.concerto.pojo.UserToken;
 import com.example.concerto.service.ClientService;
 import com.example.concerto.service.ClientServiceImpl;
 import com.example.concerto.service.ExpressService;
+import com.example.concerto.service.StationService;
 import com.example.concerto.utils.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -29,6 +31,9 @@ public class ClientController {
 
     @Autowired
     ExpressService expressService;
+
+    @Autowired
+    StationService stationService;
 
 
     @RequestMapping("/register")
@@ -93,7 +98,7 @@ public class ClientController {
         if(user==null)
             return null;
         String tel=user.getTel();
-        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 3);
+        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 4);
         model.addAttribute("data",expressList);
         model.addAttribute("msg","成功");
         return expressList;
@@ -108,7 +113,7 @@ public class ClientController {
         if(user==null)
             return null;
         String tel=user.getTel();
-        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 2);
+        List<Express> expressList = expressService.getNotPickedUpExpress(tel, 3);
         model.addAttribute("data",expressList);
         model.addAttribute("msg","成功");
         return expressList;
@@ -149,4 +154,39 @@ public class ClientController {
         user.setSalt(null);
         return user;
     }
+
+    @RequestMapping("/getExpressBySender")
+    @ResponseBody
+    public  List<Express> getExpressBySender(Model model){
+        Subject subject = SecurityUtils.getSubject();
+        Client user=(Client) subject.getPrincipal();
+        if(user==null)
+            return null;
+        String tel=user.getTel();
+        List<Express> expressList = expressService.getExpressBySender(tel);
+        model.addAttribute("data",expressList);
+        model.addAttribute("msg","成功");
+        return expressList;
+    }
+    @RequestMapping("/getStationByExpressList")
+    @ResponseBody
+    public List<Station> getStationByExpressList(Model model,@RequestBody List<Express> expressList){
+
+        return stationService.getStationList(expressList);
+    }
+
+    @RequestMapping("/updateExpress")
+    public String updateExpressInfo(Express express)
+    {
+        System.out.println(express.getExpressNo());
+        expressService.updateExpressByPojo(express);
+        return "ok";
+    }
+
+    @RequestMapping("/getStations")
+    public List<Station> getStations()
+    {
+        return  stationService.getStationList();
+    }
+
 }
