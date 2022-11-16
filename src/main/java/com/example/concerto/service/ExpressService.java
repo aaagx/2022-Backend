@@ -10,7 +10,7 @@ public interface ExpressService {
     public void insertExpressByPojo(Express express);
     public List<Express> getNotPickedUpExpress(String tel, int status);
 
-    public void updateExpressByPojo(Express express);
+    public Integer updateExpressByPojo(Express express);
 
     public String getCourierTel(int expressNo);
 
@@ -20,5 +20,7 @@ public interface ExpressService {
     public List<Express> getExpressListByCourierNoAndStatus(int courierNo, Integer status);
 
     public void deleteExpressByExpressNo(int expressNo);
+
+    public List<Express> getExpressListByStationNo(Integer stationNo);
 
 }

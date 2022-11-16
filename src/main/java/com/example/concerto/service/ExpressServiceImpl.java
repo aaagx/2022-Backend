@@ -1,6 +1,7 @@
 package com.example.concerto.service;
 
 import com.example.concerto.dao.ExpressDao;
+import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.Express;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import java.util.List;
 public class ExpressServiceImpl implements ExpressService{
     @Autowired
     ExpressDao expressDao;
+
 
     @Override
     public void insertExpressByPojo(Express express) {
@@ -24,8 +26,14 @@ public class ExpressServiceImpl implements ExpressService{
     }
 
     @Override
-    public void updateExpressByPojo(Express express) {
-        expressDao.updateExpressByPojo(express);
+    public Integer updateExpressByPojo(Express express) {
+        if(express.getExpressNo()!=null)
+            expressDao.updateExpressByPojo(express);
+        else {
+            express.setStatus(1);
+            expressDao.insertExpressByPojo(express);
+        }
+        return 0;
     }
 
     @Override
@@ -39,6 +47,7 @@ public class ExpressServiceImpl implements ExpressService{
         return expressDao.getCourierTel(expressNo);
     }
 
+
     @Override
     public List<Express> getExpressListByCourierNoAndStatus(int courierNo, Integer status) {
         List<Express> expressList = expressDao.getExpressListByCourierNoAndStatus(courierNo, status);
@@ -48,5 +57,12 @@ public class ExpressServiceImpl implements ExpressService{
     @Override
     public void deleteExpressByExpressNo(int expressNo) {
         expressDao.deleteExpressByExpressNo(expressNo);
+    }
+
+    @Override
+    public List<Express> getExpressListByStationNo(Integer stationNo)
+    {
+        List<Express> expressList = expressDao.getExpressListByStationNo(stationNo);
+        return  expressList;
     }
 }

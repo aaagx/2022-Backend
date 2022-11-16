@@ -64,7 +64,7 @@ public class WXClientController {
     }
 
     @RequestMapping("/queryExpressByExpressNo")
-    public CommonResponse queryExpressByExpressNo(@RequestParam("expressNo") int expressNo) { n
+    public CommonResponse queryExpressByExpressNo(@RequestParam("expressNo") int expressNo) {
         Express express = clientService.queryExpressByExpressNo(expressNo);
         return new CommonResponse(200, "right", express);
     }

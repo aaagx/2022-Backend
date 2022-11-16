@@ -49,4 +49,11 @@ public class CourierServiceImpl implements CourierService{
         return courierList;
     }
 
+
+    @Override
+    public List<Courier> getCourierListByPojo(Courier courier) {
+        List<Courier> courierList = courierDao.getCourierListByPojo(courier);
+        return courierList;
+    }
+
 }

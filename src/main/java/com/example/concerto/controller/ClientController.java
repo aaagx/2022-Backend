@@ -1,14 +1,8 @@
 package com.example.concerto.controller;
 
 import com.example.concerto.controller.response.CommonResponse;
-import com.example.concerto.pojo.Client;
-import com.example.concerto.pojo.Express;
-import com.example.concerto.pojo.Station;
-import com.example.concerto.pojo.UserToken;
-import com.example.concerto.service.ClientService;
-import com.example.concerto.service.ClientServiceImpl;
-import com.example.concerto.service.ExpressService;
-import com.example.concerto.service.StationService;
+import com.example.concerto.pojo.*;
+import com.example.concerto.service.*;
 import com.example.concerto.utils.SaltUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -35,6 +29,11 @@ public class ClientController {
     @Autowired
     StationService stationService;
 
+    @Autowired
+    StationExpressService stationExpressService;
+
+    @Autowired
+    CourierExpressService courierExpressService;
 
     @RequestMapping("/register")
     @ResponseBody
@@ -141,7 +140,7 @@ public class ClientController {
     @PostMapping("/doPickUpExpress")
     public CommonResponse doPickUpExpress(@RequestParam("expressNo") int expressNo){
         Express express = new Express();
-        express.setStatus(4);
+        express.setStatus(5);
         express.setExpressNo(expressNo);
         expressService.updateExpressByPojo(express);
         return new CommonResponse(200,"成功",null);
@@ -176,17 +175,32 @@ public class ClientController {
     }
 
     @RequestMapping("/updateExpress")
-    public String updateExpressInfo(Express express)
+    public Integer updateExpressInfo(Express express)
     {
-        System.out.println(express.getExpressNo());
-        expressService.updateExpressByPojo(express);
+        Integer expressNo=expressService.updateExpressByPojo(express);
+        return expressNo;
+    }
+    @RequestMapping("/updateStationExpress")
+    public String StationExpress(@RequestParam Integer expressNo ,@RequestParam Integer stationNo)
+    {
+        stationExpressService.update(new StationExpress(null,stationNo,expressNo));
         return "ok";
     }
+
 
     @RequestMapping("/getStations")
     public List<Station> getStations()
     {
         return  stationService.getStationList();
+    }
+
+    @RequestMapping("/deleteExpressByExpressNo")
+    public String deleteExpressByExpressNo(@RequestParam Integer expressNo)
+    {
+        stationExpressService.deleteStationExpressByStationExpress(new StationExpress(null,null,expressNo));
+        courierExpressService.deleteCourierExpressInfo(new CourierExpress(null,null,expressNo));
+        expressService.deleteExpressByExpressNo(expressNo);
+        return "ok";
     }
 
 }

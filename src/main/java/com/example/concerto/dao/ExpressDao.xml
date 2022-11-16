@@ -130,6 +130,24 @@
           and cE.courierNo = #{courierNo}
           and e.status = #{status}
     </select>
+
+    <select id="getExpressListByStationNo" resultType="Express">
+        select distinct (e.expressNo),
+                        expressCompany,
+                        productLink,
+                        senderTel,
+                        recipientTel,
+                        senderName,
+                        recipientName,
+                        senderAddress,
+                        recipientAddress,
+                        status
+        from db.express e,
+             db.stationExpress sE
+        where e.expressNo = sE.expressNo
+          and sE.stationNo = #{StationNo}
+    </select>
+
     <select id="getExpressByExpressNo" parameterType="Int" resultType="Express">
         select *
         from db.express

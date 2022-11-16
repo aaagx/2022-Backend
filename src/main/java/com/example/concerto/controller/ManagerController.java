@@ -10,10 +10,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,8 +32,8 @@ public class ManagerController {
     ExpressService expressService;
     @Autowired
     StationExpressService stationExpressService;
-
-
+    @Autowired
+    StationService stationService;
 
     @RequestMapping("/register")
     @ResponseBody
@@ -91,7 +88,6 @@ public class ManagerController {
     /**
      * 管理员新增一个快递员
      * 同是新增快递员与快递站的联系
-     * @param managerNo
      * @param realName
      * @param tel
      * @param idCardNo
@@ -100,8 +96,12 @@ public class ManagerController {
      */
 
     @RequestMapping("/addCourier")
-    public CommonResponse addCourier(@RequestParam("managerNo")int managerNo,@RequestParam("realName")String realName,@RequestParam("tel")String tel,@RequestParam("idCardNo")String idCardNo,@RequestParam("password")String password){
+    public CommonResponse addCourier(@RequestParam("realName")String realName,@RequestParam("tel")String tel,@RequestParam("idCardNo")String idCardNo,@RequestParam("password")String password){
         try{
+            Subject subject = SecurityUtils.getSubject();
+            Manager user=(Manager) subject.getPrincipal();
+            Integer managerNo=user.getManagerNo();
+
             Courier ifExit = courierService.getCourierInfoByTel(tel);
             if (ifExit != null){
                 return new CommonResponse(400,"该号码已注册",null);
@@ -123,6 +123,7 @@ public class ManagerController {
             stationCourierService.insertStationCourier(stationCourier);
             return new CommonResponse(200,"成功",null);
         }catch (Exception e){
+            System.out.println(e);
             return new CommonResponse(400,"失败",null);
         }
     }
@@ -151,15 +152,28 @@ public class ManagerController {
 
     /**
      * 获取该站点下的所有快递员的信息
-     * @param managerNo
      * @return
      */
     @RequestMapping("/getCouriers")
-    public CommonResponse getCouriers(@RequestParam("managerNo")int managerNo){
+    public CommonResponse getCouriers(){
         try {
+            Subject subject = SecurityUtils.getSubject();
+            Manager user=(Manager) subject.getPrincipal();
+            Integer managerNo=user.getManagerNo();
             int stationNo;
             stationNo = stationManagerService.getStationNoByManagerNo(managerNo);
             List<Courier> courierList = courierService.getCourierListByStationNo(stationNo);
+            return new CommonResponse(200,"成功",courierList);
+        }catch (Exception e){
+            return new CommonResponse(400,"失败",null);
+        }
+    }
+
+    @RequestMapping("/getAllCouriers")
+    public CommonResponse getAllCouriers(){
+        try {
+
+            List<Courier> courierList = courierService.getCourierListByPojo(new Courier());
             return new CommonResponse(200,"成功",courierList);
         }catch (Exception e){
             return new CommonResponse(400,"失败",null);
@@ -252,5 +266,21 @@ public class ManagerController {
         }catch (Exception e){
             return new CommonResponse(400,"失败",null);
         }
+    }
+
+    @RequestMapping("/getStationListByCourier")
+    @ResponseBody
+    public List<Station> getStationListByCourier(Model model,@RequestBody List<Courier> courierList){
+
+        return stationService.getStationListByCourier(courierList);
+    }
+    @RequestMapping("/getExpress")
+    @ResponseBody
+    public List<Express> getExpress(){
+        Subject subject = SecurityUtils.getSubject();
+        Manager user=(Manager) subject.getPrincipal();
+        Integer managerNo=user.getManagerNo();
+        Integer stationNo = stationManagerService.getStationNoByManagerNo(managerNo);
+        return expressService.getExpressListByStationNo(stationNo);
     }
 }

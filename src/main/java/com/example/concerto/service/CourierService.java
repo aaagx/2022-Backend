@@ -14,4 +14,5 @@ public interface CourierService {
     void deleteCourierInfoByCourierNo(int courierNo);
 
     public List<Courier> getCourierListByStationNo(int stationNo);
-}
+
+    public List<Courier> getCourierListByPojo(Courier courier);}

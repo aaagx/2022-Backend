@@ -15,10 +15,7 @@ import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -83,13 +80,31 @@ public class CourierController {
     /**
      * 快递员获取所有已经指派给自己但未接单的快递
      * 1:未指派 2:待接单 3:派送中 4:已送达未取件 5:用户取件
-     * @param courierNo
+     * @param
      * @return
      */
     @RequestMapping("/getToBeDeliveredExpress")
-    public CommonResponse getToBeDeliveredExpress(@RequestParam("courierNo")int courierNo){
+    public CommonResponse getToBeDeliveredExpress(){
+        Subject subject = SecurityUtils.getSubject();
+        Courier user=(Courier) subject.getPrincipal();
+        if(user==null)
+            return null;
+        Integer courierNo=user.getCourierNo();
         int status = 2;
         List<Express> expressList = expressService.getExpressListByCourierNoAndStatus(courierNo, status);
+        System.out.println(expressList.size());
+        return new CommonResponse(200,"成功",expressList);
+    }
+    @RequestMapping("/getDeliveredExpress")
+    public CommonResponse getDeliveredExpress(){
+        Subject subject = SecurityUtils.getSubject();
+        Courier user=(Courier) subject.getPrincipal();
+        if(user==null)
+            return null;
+        Integer courierNo=user.getCourierNo();
+        int status = 3;
+        List<Express> expressList = expressService.getExpressListByCourierNoAndStatus(courierNo, status);
+        System.out.println(expressList.size());
         return new CommonResponse(200,"成功",expressList);
     }
 
@@ -120,4 +135,17 @@ public class CourierController {
         expressService.updateExpressByPojo(express);
         return new CommonResponse(200,"成功",null);
     }
+    /**
+     * 快递员信息
+     */
+    @RequestMapping("/info")
+    public Courier info(){
+        Subject subject = SecurityUtils.getSubject();
+        Courier user=(Courier) subject.getPrincipal();
+        user.setPassword(null);
+        user.setSalt(null);
+        return user;
+    }
+
+
 }

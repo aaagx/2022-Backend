@@ -1,6 +1,7 @@
 package com.example.concerto.service;
 
 import com.example.concerto.dao.ManagerDao;
+import com.example.concerto.pojo.Express;
 import com.example.concerto.pojo.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,4 +41,5 @@ public class ManagerServiceImpl implements ManagerService{
     public void register(Manager manager) {
         managerDao.insertManageInfo(manager);
     }
+
 }
