@@ -2,7 +2,10 @@ package com.example.concerto.controller.wx;
 
 import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Express;
+import com.example.concerto.pojo.StationExpress;
 import com.example.concerto.service.ExpressService;
+import com.example.concerto.service.StationExpressService;
+import com.example.concerto.service.StationService;
 import com.example.concerto.service.wx.WXClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +24,12 @@ public class WXClientController {
     @Autowired
     ExpressService expressService;
 
+    @Autowired
+    StationService stationService;
+
+    @Autowired
+    StationExpressService stationExpressService;
+
     @RequestMapping("/insertExpress")
     public CommonResponse insertExpress(@RequestParam("expressCompany") String expressCompany,
                                         @RequestParam("senderTel") String senderTel,
@@ -28,7 +37,8 @@ public class WXClientController {
                                         @RequestParam("senderName") String senderName,
                                         @RequestParam("recipientName") String recipientName,
                                         @RequestParam("senderAddress") String senderAddress,
-                                        @RequestParam("recipientAddress") String recipientAddress) {
+                                        @RequestParam("recipientAddress") String recipientAddress,
+                                        @RequestParam("stationNo") int stationNo) {
         Express express = new Express();
         express.setExpressCompany(expressCompany);
         express.setSenderTel(senderTel);
@@ -39,6 +49,11 @@ public class WXClientController {
         express.setRecipientAddress(recipientAddress);
         express.setStatus(1);
         clientService.insertExpress(express);
+        Integer expressNo = express.getExpressNo();
+        StationExpress stationExpress = new StationExpress();
+        stationExpress.setExpressNo(expressNo);
+        stationExpress.setStationNo(stationNo);
+        stationExpressService.insert(stationExpress);
         return new CommonResponse(200, "寄件成功", "");
     }
 
@@ -93,5 +108,10 @@ public class WXClientController {
     public CommonResponse updateClientAddressByTel(@RequestParam("address") String address, @RequestParam("tel") String tel) {
         clientService.updateClientAddressByTel(address, tel);
         return new CommonResponse(200, "right", "");
+    }
+
+    @RequestMapping("/getStationList")
+    public CommonResponse getStationList() {
+        return new CommonResponse(200, "网点列表", stationService.getStationList());
     }
 }
