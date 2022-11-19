@@ -90,6 +90,9 @@ public class WXLoginController {
          * 使用Shiro编写认证操作
          */
         //1.获取Subject
+        System.out.println(tel);
+        System.out.println(password);
+        System.out.println(loginType);
         Subject subject = SecurityUtils.getSubject();
         UserToken token = new UserToken(tel, password, loginType);
         try {
@@ -101,8 +104,9 @@ public class WXLoginController {
             } else if (loginType.equals("Courier")) {
                 Courier courier = courierService.getCourierInfoByTel(tel);
                 return new CommonResponse(200, "快递员登录成功", courier);
+            }else{
+                return new CommonResponse(481, "登录失败","");
             }
-            return new CommonResponse(200, "登录成功", " ");
         } catch (UnknownAccountException e) {
             return new CommonResponse(471, "用户不存在", "");
         } catch (IncorrectCredentialsException e) {
