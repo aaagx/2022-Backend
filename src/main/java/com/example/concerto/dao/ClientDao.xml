@@ -47,7 +47,7 @@
         from db.client
         <where>
             <if test="tel != null and tel != ''">
-                AND tel LIKE "%"#{tel}"%"
+                AND tel LIKE #{tel}
             </if>
             <if test="nickName != null and nickName != ''">
                 AND nickname LIKE "%"#{nickName}"%"

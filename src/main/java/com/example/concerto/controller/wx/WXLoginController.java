@@ -101,8 +101,9 @@ public class WXLoginController {
             } else if (loginType.equals("Courier")) {
                 Courier courier = courierService.getCourierInfoByTel(tel);
                 return new CommonResponse(200, "快递员登录成功", courier);
+            }else{
+                return new CommonResponse(481, "登录失败","");
             }
-            return new CommonResponse(200, "登录成功", " ");
         } catch (UnknownAccountException e) {
             return new CommonResponse(471, "用户不存在", "");
         } catch (IncorrectCredentialsException e) {

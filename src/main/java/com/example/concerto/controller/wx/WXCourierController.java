@@ -3,6 +3,7 @@ package com.example.concerto.controller.wx;
 import com.example.concerto.controller.response.CommonResponse;
 import com.example.concerto.pojo.Courier;
 import com.example.concerto.pojo.Express;
+import com.example.concerto.service.ExpressService;
 import com.example.concerto.service.wx.WXCourierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 public class WXCourierController {
     @Autowired
     WXCourierService courierService;
+    @Autowired
+    ExpressService expressService;
 
     @RequestMapping("/queryExpressListByStatus")
     public CommonResponse queryExpressListByStatus(@RequestParam("courierNo") int courierNo, @RequestParam("status") int status) {
@@ -32,8 +35,11 @@ public class WXCourierController {
     }
 
     @RequestMapping("/receiveOrder")
-    public CommonResponse receiveOrder(@RequestParam("courierNo") int courierNo, @RequestParam("expressNo") int expressNo) {
-        courierService.insertCourierExpressAndUpdateStatus(courierNo, expressNo, 2);
+    public CommonResponse receiveOrder( @RequestParam("expressNo") int expressNo) {
+        Express express = new Express();
+        express.setStatus(3);
+        express.setExpressNo(expressNo);
+        expressService.updateExpressByPojo(express);
         return new CommonResponse(200, "right", "");
     }
 
