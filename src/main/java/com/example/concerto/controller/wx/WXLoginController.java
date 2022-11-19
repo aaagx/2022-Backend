@@ -90,9 +90,6 @@ public class WXLoginController {
          * 使用Shiro编写认证操作
          */
         //1.获取Subject
-        System.out.println(tel);
-        System.out.println(password);
-        System.out.println(loginType);
         Subject subject = SecurityUtils.getSubject();
         UserToken token = new UserToken(tel, password, loginType);
         try {
