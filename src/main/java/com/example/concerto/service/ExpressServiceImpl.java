@@ -62,7 +62,7 @@ public class ExpressServiceImpl implements ExpressService{
     @Override
     public List<Express> getExpressListByStationNo(Integer stationNo)
     {
-        List<Express> expressList = expressDao.getExpressListByStationNo(stationNo);
+        List<Express> expressList = expressDao.getExpressListByStationNo(stationNo,1);
         return  expressList;
     }
 }

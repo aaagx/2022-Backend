@@ -28,7 +28,7 @@ public interface ExpressDao {
 
     public List<Express> getRecExpressListByTel(String tel);
 
-    public List<Express> getExpressListByStationNo(Integer StationNo);
+    public List<Express> getExpressListByStationNo(Integer StationNo, @Param("status") Integer status);
 
 
     public List<Express> getSendExpressListByTel(String tel);

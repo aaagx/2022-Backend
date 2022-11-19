@@ -146,6 +146,7 @@
              db.stationExpress sE
         where e.expressNo = sE.expressNo
           and sE.stationNo = #{StationNo}
+          and e.status=#{status}
     </select>
 
     <select id="getExpressByExpressNo" parameterType="Int" resultType="Express">
